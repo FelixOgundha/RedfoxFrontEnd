@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/bamiogunfemi/react-redux-boilerplatestatic/css/main.6dea0f05.chunk.css",
+    "main.js": "/bamiogunfemi/react-redux-boilerplatestatic/js/main.f5396132.chunk.js",
+    "main.js.map": "/bamiogunfemi/react-redux-boilerplatestatic/js/main.f5396132.chunk.js.map",
+    "runtime-main.js": "/bamiogunfemi/react-redux-boilerplatestatic/js/runtime-main.f2d9724f.js",
+    "runtime-main.js.map": "/bamiogunfemi/react-redux-boilerplatestatic/js/runtime-main.f2d9724f.js.map",
+    "static/js/2.a0f3bc00.chunk.js": "/bamiogunfemi/react-redux-boilerplatestatic/js/2.a0f3bc00.chunk.js",
+    "static/js/2.a0f3bc00.chunk.js.map": "/bamiogunfemi/react-redux-boilerplatestatic/js/2.a0f3bc00.chunk.js.map",
+    "static/js/3.a47c36c5.chunk.js": "/bamiogunfemi/react-redux-boilerplatestatic/js/3.a47c36c5.chunk.js",
+    "static/js/3.a47c36c5.chunk.js.map": "/bamiogunfemi/react-redux-boilerplatestatic/js/3.a47c36c5.chunk.js.map",
+    "index.html": "/bamiogunfemi/react-redux-boilerplateindex.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/bamiogunfemi/react-redux-boilerplatestatic/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.a0f3bc00.chunk.js.LICENSE.txt": "/bamiogunfemi/react-redux-boilerplatestatic/js/2.a0f3bc00.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f2d9724f.js",
+    "static/js/2.a0f3bc00.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.f5396132.chunk.js"
+  ]
+}
