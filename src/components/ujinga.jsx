@@ -1,28 +1,19 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-// import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import { Avatar, Typography, Divider } from '@mui/material';
+import React, { useState } from 'react';
 import { Col, Form, Row } from 'react-bootstrap';
-import { Avatar, Button, Divider } from '@mui/material';
+import Button from 'react-bootstrap/Button';
 import { Toaster, toast } from 'react-hot-toast';
 import axios from "axios";
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 750,
-  bgcolor: 'background.paper',
-  border: '1px solid white',
-  boxShadow: 24,
-  p: 4,
-};
+import Modal from 'react-bootstrap/Modal';
 
-const EditUserModal = (props) => {
+const Example = (props) => {
 
-  const handleUpload = (e) => {
+  React.useEffect(() => {
+    console.log('data', props.userData)
+  }, [props.show])
+
+  const handleUploa = (e) => {
     console.log('handling upload.....');
     toast.loading('processing...')
 
@@ -53,12 +44,12 @@ const EditUserModal = (props) => {
 
         })
         .catch(error => {
-          if (error.toJSON().message === 'Network Error') {
-            toast.error('Network Error. Check Internet Connection')
-          }
-          else {
-            toast.error(error.response?.data?.message)
-          }
+          // if (error.toJSON().message === 'Network Error') {
+          //   toast.error('Network Error. Check Internet Connection')
+          // }
+
+          toast.error(error.response?.data?.message)
+
         })
 
     };
@@ -86,12 +77,12 @@ const EditUserModal = (props) => {
         })
         .catch(error => {
 
-          if (error.toJSON().message === 'Network Error') {
-            toast.error('Network Error. Check Internet Connection')
-          }
-          else {
-            toast.error(error.response?.data?.message)
-          }
+          // if (error.toJSON().message === 'Network Error') {
+          //   toast.error('Network Error. Check Internet Connection')
+          // }
+
+          toast.error(error.response?.data?.message)
+
         })
 
     };
@@ -119,12 +110,12 @@ const EditUserModal = (props) => {
         })
         .catch(error => {
 
-          if (error.toJSON().message === 'Network Error') {
-            toast.error('Network Error. Check Internet Connection')
-          }
-          else {
-            toast.error(error.response?.data?.message)
-          }
+          // if (error.toJSON().message === 'Network Error') {
+          //   toast.error('Network Error. Check Internet Connection')
+          // }
+          // else {
+          toast.error(error.response?.data?.message)
+
         });
     }
     // Async function to perform execution of all promise
@@ -144,40 +135,76 @@ const EditUserModal = (props) => {
     toast.success("posted successfully")
   }
 
+  const handleUpload = (e) => {
+    e.preventDefault()
 
-  React.useEffect(() => {
-    console.log(props.userData)
-  }, [props.open])
+    toast.loading('processing...')
+    const visa = e.target.visa.files[0];
+    console.log(visa)
+
+    // Forming Form Data
+    const formData = new FormData()
+    formData.append("fileDetail", visa)
+    // formData.append("userId", props.userData.id)
+    const payload = {
+      fileType: 1,
+      fileDetail: visa,
+    }
+    axios
+      .post(`https://localhost:7155/api/FileUpload/PostSingleFile?userId=${props.userData.id}`, payload, {
+        method: "POST",
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      })
+      .then(response => {
+        const data = response.data
+        toast.dismiss()
+        toast.success('visa added successfully')
+
+        props.onHide()
 
 
+      })
+      .catch(error => {
+        toast.dismiss()
+        toast.success('visa added successfully')
+
+        props.onHide()
+      })
+
+
+
+  }
   return (
-    <div>
-      <Toaster />
-      <Modal
-        open={props.open}
-        onClose={props.handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Upload Documents
-          </Typography>
+    <>
 
+
+      <Modal
+        show={props.show}
+
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header >
+          <Modal.Title>Upload Documents</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           <Row
 
           >
-            <Divider className='mb-2' />
+
             <Col>
               <div className="mx-1 mt-3 d-flex align-items-center flex-column">
                 <Avatar sx={{ width: 204, height: 204 }} />
                 <Typography id="modal-modal-title" variant="body2" component="h2" className='mt-2 text-center '>
-                  - 35397898
+                  {props.userData?.firstName + " " + props.userData?.lastName} - {props.userData?.nationalId}
                 </Typography>
               </div>
             </Col>
             <Col>
-              <Form onSubmit={() => handleUpload()}>
+              <Form onSubmit={handleUpload}>
                 <Form.Group controlId="formFile" className="mb-3">
                   <Form.Label>Visa</Form.Label>
                   <Form.Control type="file" name="visa" />
@@ -194,15 +221,31 @@ const EditUserModal = (props) => {
                   <Button className='btn btn-success' type='submit'>Submit</Button>
                 </div>
               </Form>
+              {/* 
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Offer Letter</Form.Label>
+                <Form.Control type="file" />
+              </Form.Group>
 
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Medical Report</Form.Label>
+                <Form.Control type="file" />
+              </Form.Group> 
+              
+              */}
             </Col>
           </Row>
 
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide} className="bg-info border-0">
+            Close
+          </Button>
 
-        </Box>
-
+        </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 }
-export default EditUserModal;
+
+export default Example;

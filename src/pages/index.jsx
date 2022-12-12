@@ -17,6 +17,8 @@ import Table from './booklist';
 import authService from '../services/auth.service';
 import { useHistory } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
+import Dashboard from './dashboard';
+import axios from "axios";
 
 const pages = ['Members', 'Staff',];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -24,7 +26,9 @@ const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 const HomePage = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [members, setMembers] = React.useState([]);
   const history = useHistory();
+  const profile = JSON.parse(localStorage.getItem("authCustomer"))
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -47,130 +51,140 @@ const HomePage = () => {
     history.push('/login')
 
     toast.dismiss()
-    // try {
-    //   await then(
-    //     () => {
 
-    //       // navigate("/home");
-    //       toast.dismiss()
-    //     },
-    //     (error) => {
-
-    //       console.log(error);
-    //     }
-    //   );
-    // } catch (err) {
-    //   console.log(err)
-    // }
   }
 
+  const fetchMember = () => {
+
+    axios
+      .post("https://localhost:7155/api/Auth/GetUsers")
+      .then((response) => {
+
+        setMembers(response.data)
+
+      }).catch((e) => {
+        console.log(e.response.message)
+      });
+
+  }
+
+
+
   return (
-    <div className="home">
-      <Toaster />
-      <AppBar position="static" className='bg-info'>
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              LOGO
-            </Typography>
+    <div>
+      {
+        profile.role !== "standard" ?
+          <div className="home">
+            <Toaster />
+            <AppBar position="static" className='bg-info'>
+              <Container maxWidth="xl">
+                <Toolbar disableGutters>
+                  {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+                  <Typography
+                    variant="h6"
+                    noWrap
+                    component="a"
+                    href="/"
+                    sx={{
+                      mr: 2,
+                      display: { xs: 'none', md: 'flex' },
+                      fontFamily: 'monospace',
+                      fontWeight: 700,
+                      letterSpacing: '.3rem',
+                      color: 'inherit',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    LOGO
+                  </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: 'block', md: 'none' },
-                }}
-              >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
-                flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              LOGO
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  {page}
-                </Button>
-              ))}
-            </Box>
+                  <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <IconButton
+                      size="large"
+                      aria-label="account of current user"
+                      aria-controls="menu-appbar"
+                      aria-haspopup="true"
+                      onClick={handleOpenNavMenu}
+                      color="inherit"
+                    >
+                      <MenuIcon />
+                    </IconButton>
+                    <Menu
+                      id="menu-appbar"
+                      anchorEl={anchorElNav}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                      }}
+                      open={Boolean(anchorElNav)}
+                      onClose={handleCloseNavMenu}
+                      sx={{
+                        display: { xs: 'block', md: 'none' },
+                      }}
+                    >
+                      {pages.map((page) => (
+                        <MenuItem key={page} onClick={handleCloseNavMenu}>
+                          <Typography textAlign="center">{page}</Typography>
+                        </MenuItem>
+                      ))}
+                    </Menu>
+                  </Box>
+                  <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                  <Typography
+                    variant="h5"
+                    noWrap
+                    component="a"
+                    href=""
+                    sx={{
+                      mr: 2,
+                      display: { xs: 'flex', md: 'none' },
+                      flexGrow: 1,
+                      fontFamily: 'monospace',
+                      fontWeight: 700,
+                      letterSpacing: '.3rem',
+                      color: 'inherit',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    LOGO
+                  </Typography>
+                  <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    {pages.map((page) => (
+                      <Button
+                        key={page}
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                      >
+                        {page}
+                      </Button>
+                    ))}
+                  </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
-              <Button
-                onClick={handleLogOut}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                Logout
-              </Button>
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
-      <div className="container mt-5">
-        <Table />
-      </div>
+                  <Box sx={{ flexGrow: 0 }}>
+                    <Button
+                      onClick={handleLogOut}
+                      sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                      Logout
+                    </Button>
+                  </Box>
+                </Toolbar>
+              </Container>
+            </AppBar>
+            <div className="container mt-5">
+              <Table />
+            </div>
+          </div>
+          :
+          <Dashboard />
+      }
     </div>
+
   );
 };
 export default HomePage;

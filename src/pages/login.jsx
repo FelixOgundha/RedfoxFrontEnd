@@ -48,7 +48,9 @@ function Login() {
 
     try {
       await AuthService.login(userEmail, password).then(
-        () => {
+        (res) => {
+          console.log(res)
+          localStorage.setItem("authCustomer", JSON.stringify(res))
           toast.dismiss()
           toast.success('Login Successfull')
           // navigate("/home");
@@ -75,7 +77,7 @@ function Login() {
           toast.dismiss()
           toast.success('Login Successfull')
           // navigate("/home");
-          history.push('/home')
+          history.push('/login')
         },
         (error) => {
           console.log(userEmail, password)
