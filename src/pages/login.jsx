@@ -75,12 +75,11 @@ function Login() {
       await AuthService.verify(verificationCode).then(
         () => {
           toast.dismiss()
-          toast.success('Login Successfull')
+          toast.success('Email Verified')
           // navigate("/home");
-          history.push('/login')
+          window.location = '/login';
         },
         (error) => {
-          console.log(userEmail, password)
           console.log(error);
         }
       );
@@ -121,12 +120,7 @@ function Login() {
 
               <p className="text-center mt-3">Don't have an account <Link onClick={() => setIsLogin(false)}
 
-              >SignUp</Link> click <Link
-                onClick={
-                  () => {
-                    setIsLogin(false);
-                    setIsVerified(true);
-                  }}>here</Link> to verify account</p>
+              ><strong>SignUp</strong></Link> to verify account</p>
             </Col>
             :
             <>
@@ -206,7 +200,7 @@ function Login() {
                       onClick={() => handleSignUp()}
                     >Sign Up</Button>
 
-                    <p className="text-center mt-3">Have an account <Link onClick={() => setIsLogin(true)}>Login</Link></p>
+                    <p className="text-center mt-3">Have an account <Link onClick={() => setIsLogin(true)}> <strong>Login</strong> </Link></p>
                   </Col>
               }
             </>
