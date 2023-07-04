@@ -10,9 +10,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Button } from '@mui/material';
 import BookingModal from '../../components/bookingModal';
-
+import { format } from 'date-fns';
 const Index = () => {
   const [value, setValue] = React.useState(dayjs('2022-04-17'));
+  const [children, setChildren] = React.useState('');
+  const [adults, setAdults] = React.useState('');
+  const [rooms, setRooms] = React.useState('');
+  const [checkinDate, setCheckinDate] = React.useState('');
+  const [checkOutDate, setCheckOutDate] = React.useState('');
   const [age, setAge] = React.useState('');
   const [bookings, setBookings] = React.useState([])
   const [bookingShow, setBookingShow] = React.useState(false);
@@ -20,6 +25,18 @@ const Index = () => {
   const handleChange = (event) => {
     setAge(event.target.value);
   };
+
+  const bookingDetails = {
+    children: children,
+    adults: adults,
+    rooms: rooms,
+    checkOutDate: checkOutDate.toString(),
+    checkinDate: checkinDate.toString()
+  }
+
+  const handleSubmit = () => {
+    console.log();
+  }
 
   return (
     <div>
@@ -140,8 +157,10 @@ const Index = () => {
                         <DemoContainer components={['DatePicker', 'DatePicker']}>
                           <DatePicker
                             label="Check In "
-                            value={value}
-                            onChange={(newValue) => setValue(newValue)}
+                            value={checkinDate}
+                            onChange={(e) => {
+                              setCheckinDate(e, "yyyy-MM-dd")
+                            }}
                           />
                         </DemoContainer>
                       </LocalizationProvider>
@@ -156,8 +175,8 @@ const Index = () => {
                         <DemoContainer components={['DatePicker', 'DatePicker']}>
                           <DatePicker
                             label="Check Out"
-                            value={value}
-                            onChange={(newValue) => setValue(newValue)}
+                            value={checkOutDate}
+                            onChange={(e) => setCheckOutDate(e, "yyyy-MM-dd")}
                           />
                         </DemoContainer>
                       </LocalizationProvider>
@@ -169,18 +188,18 @@ const Index = () => {
                       </div>
                       <div class="select-this">
                         <FormControl fullWidth>
-                          <InputLabel id="demo-simple-select-label">{age}</InputLabel>
+                          <InputLabel id="demo-simple-select-label">{adults}</InputLabel>
                           <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={age}
+                            value={adults}
                             label="Age"
-                            onChange={handleChange}
+                            onChange={(e) => setAdults(e.target.value)}
                           >
-                            <MenuItem value={10}>1</MenuItem>
-                            <MenuItem value={20}>2</MenuItem>
-                            <MenuItem value={30}>3</MenuItem>
-                            <MenuItem value={30}>4</MenuItem>
+                            <MenuItem value={1}>1</MenuItem>
+                            <MenuItem value={2}>2</MenuItem>
+                            <MenuItem value={3}>3</MenuItem>
+                            <MenuItem value={3}>4</MenuItem>
                           </Select>
                         </FormControl>
                       </div>
@@ -192,18 +211,18 @@ const Index = () => {
                       </div>
                       <div class="select-this">
                         <FormControl fullWidth>
-                          <InputLabel id="demo-simple-select-label">{age}</InputLabel>
+                          <InputLabel id="demo-simple-select-label">{children}</InputLabel>
                           <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={age}
+                            value={children}
                             label="Age"
-                            onChange={handleChange}
+                            onChange={(e) => setChildren(e.target.value)}
                           >
-                            <MenuItem value={10}>1</MenuItem>
-                            <MenuItem value={20}>2</MenuItem>
-                            <MenuItem value={30}>3</MenuItem>
-                            <MenuItem value={30}>4</MenuItem>
+                            <MenuItem value={1}>1</MenuItem>
+                            <MenuItem value={2}>2</MenuItem>
+                            <MenuItem value={3}>3</MenuItem>
+                            <MenuItem value={4}>4</MenuItem>
                           </Select>
                         </FormControl>
                       </div>
@@ -215,18 +234,18 @@ const Index = () => {
                       </div>
                       <div class="select-this">
                         <FormControl fullWidth>
-                          <InputLabel id="demo-simple-select-label">{age}</InputLabel>
+                          <InputLabel id="demo-simple-select-label">{rooms}</InputLabel>
                           <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={age}
+                            value={rooms}
                             label="Age"
-                            onChange={handleChange}
+                            onChange={(e) => setRooms(e.target.value)}
                           >
-                            <MenuItem value={10}>1</MenuItem>
-                            <MenuItem value={20}>2</MenuItem>
-                            <MenuItem value={30}>3</MenuItem>
-                            <MenuItem value={30}>4</MenuItem>
+                            <MenuItem value={1}>1</MenuItem>
+                            <MenuItem value={2}>2</MenuItem>
+                            <MenuItem value={3}>3</MenuItem>
+                            <MenuItem value={4}>4</MenuItem>
                           </Select>
                         </FormControl>
                       </div>
@@ -498,6 +517,7 @@ const Index = () => {
 
       <BookingModal
         show={bookingShow}
+        bookingDetails={bookingDetails}
         onHide={() => {
           setBookingShow(false)
         }}
