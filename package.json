@@ -1,21 +1,9 @@
 {
-  "name": "@bamiogunfemi/react-redux-thunk-boilerplate",
   "version": "0.1.1",
   "description": "Opinionated React starter boilerpate + authentication, with using Redux, Redux Thunk, Axios and more.",
-  "author": "Bami Ogunfemi <ayobamiarafat09@gmail.com> (https://bamiogunfemi.codes/)",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "keywords": [
-    "react",
-    "redux",
-    "thunk"
-  ],
   "license": "MIT",
-  "bugs": "https://github.com/bamiogunfemi/react-redux-boilerplate/issues",
   "repository": {
     "type": "github",
-    "url": "git+https://github.com/bamiogunfemi/react-redux-boilerplate.git",
     "directory": "packages/react-redux-boilerplate"
   },
   "dependencies": {
@@ -27,10 +15,12 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "add": "^2.0.6",
     "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.21",
+    "ra-data-simple-rest": "^4.11.4",
     "rc-pagination": "^3.2.0",
     "react": "^17.0.1",
     "react-bootstrap": "^2.7.0",
@@ -47,7 +37,8 @@
     "sass": "^1.56.2",
     "sass-loader": "^13.2.0",
     "styled-components": "^5.3.6",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "start": "react-scripts start",

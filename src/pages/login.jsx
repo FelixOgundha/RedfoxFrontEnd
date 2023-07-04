@@ -111,10 +111,12 @@ function Login() {
 
                 type="password" />
 
-              <Button variant="contained" className="bg-info py-2 text-white  mx-5" onClick={() => {
-                handleLogin()
-              }}>
-                Login</Button>
+              <Button
+                variant="contained"
+                className="bg-info py-2 text-white  mx-5"
+
+              >
+                <Link to="/home"> Login</Link></Button>
 
 
 

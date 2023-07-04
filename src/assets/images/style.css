@@ -62,3 +62,9 @@ tr {
 tr:nth-child(even) {
   background-color: #e0e0e0;
 }
+
+li {
+  background-color: white;
+  list-style: none;
+  font-size: 200px;
+}
