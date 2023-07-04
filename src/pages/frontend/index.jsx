@@ -1,13 +1,33 @@
 import React from 'react'
+import dayjs from 'dayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { Button } from '@mui/material';
+import BookingModal from '../../components/bookingModal';
 
 const Index = () => {
+  const [value, setValue] = React.useState(dayjs('2022-04-17'));
+  const [age, setAge] = React.useState('');
+  const [bookings, setBookings] = React.useState([])
+  const [bookingShow, setBookingShow] = React.useState(false);
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
   return (
     <div>
 
       <header>
 
         <marquee width="100%" direction="left" style={{ backgroundColor: "#800000", color: "white" }}>
-          <p style={{ padding: 0, margin: 0, color: "white" }}>
+          <p style={{ padding: 0, margin: 0, color: "white" }} className='py-1'>
             <strong>
               Welcome to Dhe Jomel Hotel, Your Home away from Home. Call 0718 627 569 to talk to our customer service representative or  0774 627 569
             </strong>
@@ -115,9 +135,16 @@ const Index = () => {
                       <div class="boking-tittle">
                         <span> Check In Date:</span>
                       </div>
-                      <div class="boking-datepicker">
-                        <input id="datepicker1" placeholder="10/12/2020" />
-                      </div>
+
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DemoContainer components={['DatePicker', 'DatePicker']}>
+                          <DatePicker
+                            label="Check In "
+                            value={value}
+                            onChange={(newValue) => setValue(newValue)}
+                          />
+                        </DemoContainer>
+                      </LocalizationProvider>
                     </div>
 
                     <div class="single-select-box mb-30">
@@ -125,9 +152,15 @@ const Index = () => {
                       <div class="boking-tittle">
                         <span>Check OutDate:</span>
                       </div>
-                      <div class="boking-datepicker">
-                        <input id="datepicker2" placeholder="12/12/2020" />
-                      </div>
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DemoContainer components={['DatePicker', 'DatePicker']}>
+                          <DatePicker
+                            label="Check Out"
+                            value={value}
+                            onChange={(newValue) => setValue(newValue)}
+                          />
+                        </DemoContainer>
+                      </LocalizationProvider>
                     </div>
 
                     <div class="single-select-box mb-30">
@@ -135,16 +168,21 @@ const Index = () => {
                         <span>Adults:</span>
                       </div>
                       <div class="select-this">
-                        <form action="#">
-                          <div class="select-itms">
-                            <select name="select" id="select1">
-                              <option value="">1</option>
-                              <option value="">2</option>
-                              <option value="">3</option>
-                              <option value="">4</option>
-                            </select>
-                          </div>
-                        </form>
+                        <FormControl fullWidth>
+                          <InputLabel id="demo-simple-select-label">{age}</InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={age}
+                            label="Age"
+                            onChange={handleChange}
+                          >
+                            <MenuItem value={10}>1</MenuItem>
+                            <MenuItem value={20}>2</MenuItem>
+                            <MenuItem value={30}>3</MenuItem>
+                            <MenuItem value={30}>4</MenuItem>
+                          </Select>
+                        </FormControl>
                       </div>
                     </div>
 
@@ -153,16 +191,21 @@ const Index = () => {
                         <span>Children:</span>
                       </div>
                       <div class="select-this">
-                        <form action="#">
-                          <div class="select-itms">
-                            <select name="select" id="select2">
-                              <option value="">1</option>
-                              <option value="">2</option>
-                              <option value="">3</option>
-                              <option value="">4</option>
-                            </select>
-                          </div>
-                        </form>
+                        <FormControl fullWidth>
+                          <InputLabel id="demo-simple-select-label">{age}</InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={age}
+                            label="Age"
+                            onChange={handleChange}
+                          >
+                            <MenuItem value={10}>1</MenuItem>
+                            <MenuItem value={20}>2</MenuItem>
+                            <MenuItem value={30}>3</MenuItem>
+                            <MenuItem value={30}>4</MenuItem>
+                          </Select>
+                        </FormControl>
                       </div>
                     </div>
 
@@ -171,21 +214,26 @@ const Index = () => {
                         <span>Rooms:</span>
                       </div>
                       <div class="select-this">
-                        <form action="#">
-                          <div class="select-itms">
-                            <select name="select" id="select3">
-                              <option value="">1</option>
-                              <option value="">2</option>
-                              <option value="">3</option>
-                              <option value="">4</option>
-                            </select>
-                          </div>
-                        </form>
+                        <FormControl fullWidth>
+                          <InputLabel id="demo-simple-select-label">{age}</InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={age}
+                            label="Age"
+                            onChange={handleChange}
+                          >
+                            <MenuItem value={10}>1</MenuItem>
+                            <MenuItem value={20}>2</MenuItem>
+                            <MenuItem value={30}>3</MenuItem>
+                            <MenuItem value={30}>4</MenuItem>
+                          </Select>
+                        </FormControl>
                       </div>
                     </div>
 
                     <div class="single-select-box pt-45 mb-30">
-                      <a href="#" class="btn select-btn">Book Now</a>
+                      <Button variant="contained" className='p-3' onClick={() => setBookingShow(true)}>Book Room</Button>
                     </div>
                   </div>
                 </form>
@@ -447,6 +495,13 @@ const Index = () => {
         </div>
 
       </footer>
+
+      <BookingModal
+        show={bookingShow}
+        onHide={() => {
+          setBookingShow(false)
+        }}
+      />
     </div>
   )
 }
