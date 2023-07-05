@@ -11,6 +11,10 @@ import Select from '@mui/material/Select';
 import { Button } from '@mui/material';
 import BookingModal from '../../components/bookingModal';
 import { format } from 'date-fns';
+import FsLightbox from "fslightbox-react";
+import Header from '../../components/partials/header';
+import Footer from '../../components/partials/footer';
+
 const Index = () => {
   const [value, setValue] = React.useState(dayjs('2022-04-17'));
   const [children, setChildren] = React.useState('');
@@ -21,7 +25,8 @@ const Index = () => {
   const [age, setAge] = React.useState('');
   const [bookings, setBookings] = React.useState([])
   const [bookingShow, setBookingShow] = React.useState(false);
-
+  const [showGallery, setShowGallery] = React.useState(false);
+  const [toggler, setToggler] = React.useState(false);
   const handleChange = (event) => {
     setAge(event.target.value);
   };
@@ -40,58 +45,19 @@ const Index = () => {
 
   return (
     <div>
+      <FsLightbox
+        toggler={toggler}
+        sources={[
+          'https://www.boutiques.marriottbonvoy.com/wp-content/uploads/2019/10/whotels-bed.jpg',
+          'https://cdn.shopify.com/s/files/1/0042/0626/4384/files/shutterstock_1017013843_large.jpg',
+          'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+          'https://media.cnn.com/api/v1/images/stellar/prod/180117182508-aka-wall-street.jpg?q=w_1600,h_900,x_0,y_0,c_fill/w_1280',
 
-      <header>
 
-        <marquee width="100%" direction="left" style={{ backgroundColor: "#800000", color: "white" }}>
-          <p style={{ padding: 0, margin: 0, color: "white" }} className='py-1'>
-            <strong>
-              Welcome to Dhe Jomel Hotel, Your Home away from Home. Call 0718 627 569 to talk to our customer service representative or  0774 627 569
-            </strong>
-          </p>
-        </marquee>
+        ]}
+      />
 
-        <div class="header-area header-sticky">
-          <div class="main-header ">
-            <div class="container">
-              <div class="row align-items-center">
-
-                <div class="col-xl-2 col-lg-2">
-                  <div class="logo">
-                    {/* <!-- <a href="#"><img src="assets/img/logo/logo.png" alt=""></a> --> */}
-                    <h2>DheJomel</h2>
-                  </div>
-                </div>
-                <div class="col-xl-8 col-lg-8">
-
-                  <div class="main-menu f-right d-none d-lg-block">
-                    <nav>
-                      <ul id="navigation">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/rooms.html">Rooms</a></li>
-                        <li><a href="services.html">Our Services</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
-                <div class="col-xl-2 col-lg-2">
-
-                  <div class="header-btn">
-                    <a href="#" class="btn btn1 d-none d-lg-block " style={{ backgroundColor: "rgb(128, 0, 0)", color: "white", fontWeight: "" }}>Book Online</a>
-                  </div>
-                </div>
-
-                <div class="col-12">
-                  {/* <!-- <div class="mobile_menu d-block d-lg-none">
-                  </div> --> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </header>
+      <Header />
       <main>
 
         <div class="slider-area ">
@@ -274,7 +240,7 @@ const Index = () => {
                     </div>
                   </div>
                 </div>
-                <div class=" col-xl-4 col-lg-4">
+                <div class="ms-4 col-xl-4 col-lg-4">
                   <div class="customer-caption">
                     <span>About our company</span>
                     <h2>Make the customer the hero of your story</h2>
@@ -310,7 +276,7 @@ const Index = () => {
             <div class="row">
               <div class="col-xl-3 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50">
+                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
                   <div class="room-img">
                     <a href="#"><img src="assets/img/rooms/room1.jpg" alt="" /></a>
                   </div>
@@ -324,7 +290,7 @@ const Index = () => {
               </div>
               <div class="col-xl-3 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50">
+                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
                   <div class="room-img">
                     <a href="#"><img src="assets/img/rooms/room2.jpg" alt="" /></a>
                   </div>
@@ -338,7 +304,7 @@ const Index = () => {
               </div>
               <div class="col-xl-3 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50">
+                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
                   <div class="room-img">
                     <a href="#"> <img src="assets/img/rooms/room3.jpg" alt="" /></a>
                   </div>
@@ -352,7 +318,7 @@ const Index = () => {
               </div>
               <div class="col-xl-3 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50">
+                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
                   <div class="room-img">
                     <a href="#"><img src="assets/img/rooms/room4.jpg" alt="" /></a>
                   </div>
@@ -374,12 +340,12 @@ const Index = () => {
 
 
 
-        <div class="dining-area dining-padding-top">
+        <div class="dining-area dining-padding-top d-none">
 
           <div class="single-dining-area left-img">
             <div class="container">
               <div class="row justify-content-end">
-                <div class="col-lg-8 col-md-8">
+                <div class="col-lg-8 col-md-8 ps-5">
                   <div class="dining-caption">
                     <span>Our resturent</span>
                     <h3>Dining & Drinks</h3>
@@ -408,7 +374,72 @@ const Index = () => {
             </div>
           </div>
         </div>
+        <div class="row justify-content-center pt-5">
+          <div class="col-xl-8">
 
+            <div class="font-back-tittle mb-45">
+              <div class="archivment-front">
+                <h3>Our Facilities</h3>
+              </div>
+              <h3 class="archivment-back">Our Facilities</h3>
+            </div>
+          </div>
+        </div>
+        <div
+          className="d-flex w-100"
+          style={{ backgroundColor: "whitesmoke" }}
+        >
+          <div className="illustration bg-success w-50 "
+            style={{
+              backgroundImage: "url('https://mostuniquehotels.com/uploads/xwatamutreehousekenya.jpg.pagespeed.ic.3olY1hv6DS.jpg')",
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              height: '650px',
+            }}
+          >
+
+          </div>
+          <div className="statement p-5  d-flex align-items-center w-50">
+            <div class="dining-caption">
+              <span>Our resturent</span>
+              <h3>Dining & Drinks</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
+              <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
+                <strong>Learn More <i class="ti-angle-right"></i></strong>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="d-flex w-100"
+          style={{ backgroundColor: "white" }}
+        >
+
+          <div className="statement  d-flex align-items-center w-50">
+            <div class="dining-caption p-5">
+              <span>Our resturent</span>
+              <h3>Dining & Drinks</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
+              <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
+                <strong>Learn More <i class="ti-angle-right"></i></strong>
+              </a>
+            </div>
+          </div>
+
+          <div className="illustration bg-success w-50 "
+            style={{
+              backgroundImage: "url('https://mostuniquehotels.com/uploads/xwatamutreehousekenya.jpg.pagespeed.ic.3olY1hv6DS.jpg')",
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              height: '650px',
+            }}
+          >
+
+          </div>
+        </div>
 
 
 
@@ -418,13 +449,16 @@ const Index = () => {
               <div class="col-md-12">
                 <div class="gallery-active owl-carousel">
                   <div class="gallery-img">
-                    <a href="#"><img src="assets/img/gallery/gallery1.jpg" alt="" /></a>
+                    <a href="#"><img src="https://www.boutiques.marriottbonvoy.com/wp-content/uploads/2019/10/whotels-bed.jpg" alt="" /></a>
+                    <h1>One</h1>
                   </div>
                   <div class="gallery-img">
-                    <a href="#"><img src="assets/img/gallery/gallery2.jpg" alt="" /></a>
+                    <a href="#"><img src="https://cdn.shopify.com/s/files/1/0042/0626/4384/files/shutterstock_1017013843_large.jpg" alt="" /></a>
+                    <h1>One</h1>
+
                   </div>
                   <div class="gallery-img">
-                    <a href="#"><img src="assets/img/gallery/gallery3.jpg" alt="" /></a>
+                    <a href="#"><img src="https://media.cnn.com/api/v1/images/stellar/prod/180117182508-aka-wall-street.jpg?q=w_1600,h_900,x_0,y_0,c_fill/w_1280" alt="" /></a>
                   </div>
                 </div>
               </div>
@@ -433,87 +467,7 @@ const Index = () => {
         </div>
 
       </main>
-      <footer>
-
-        <div class="footer-area black-bg footer-padding">
-          <div class="container">
-            <div class="row d-flex justify-content-between">
-              <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                <div class="single-footer-caption mb-30">
-
-                  <div class="footer-logo">
-                    <h2 style={{ color: "white" }}>DheJomel Hotel</h2>
-                  </div>
-                  <div class="footer-social footer-social2">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fas fa-globe"></i></a>
-                    <a href="#"><i class="fab fa-behance"></i></a>
-                  </div>
-                  <div class="footer-pera">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, reprehenderit.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5">
-                <div class="single-footer-caption mb-30">
-                  <div class="footer-tittle">
-                    <h4>Quick Links</h4>
-                    <ul>
-                      <li><a href="#">About Us</a></li>
-                      <li><a href="#">Our Rooms</a></li>
-                      <li><a href="#">Our Services</a></li>
-                      <li><a href="#">Contact</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3">
-                <div class="single-footer-caption mb-30">
-                  <div class="footer-tittle">
-                    <h4>Reservations</h4>
-                    <ul>
-                      <li><a href="#">Tel: +254 718 627 569</a></li>
-                      <li><a href="#">Email: booking@dhejomel.co.ke</a></li>
-
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-3 col-md-4  col-sm-5">
-                <div class="single-footer-caption mb-30">
-                  <div class="footer-tittle">
-                    <h4>Our Location</h4>
-                    <ul>
-                      <li><a href="#">Siaya County,Siaya Town, </a></li>
-                      <li><a href="#">Rabango Road,Next to CDF Office Siaya</a></li>
-                    </ul>
-
-                    <div class="footer-form">
-                      <div id="mc_embed_signup">
-                        <form target="_blank"
-                          action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                          method="get" class="subscribe_form relative mail_part">
-                          <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                            class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                            onblur="this.placeholder = ' Email Address '" />
-                          <div class="form-icon">
-                            <button type="submit" name="submit" id="newsletter-submit"
-                              class="email_icon newsletter-submit button-contactForm"><img
-                                src="assets/img/logo/form-iocn.jpg" alt="" /></button>
-                          </div>
-                          <div class="mt-10 info"></div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </footer>
+      <Footer />
 
       <BookingModal
         show={bookingShow}
@@ -522,6 +476,8 @@ const Index = () => {
           setBookingShow(false)
         }}
       />
+
+
     </div>
   )
 }

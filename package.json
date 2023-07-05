@@ -23,6 +23,7 @@
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.9",
     "dotenv": "^8.2.0",
+    "fslightbox-react": "^1.7.6",
     "lodash": "^4.17.21",
     "ra-data-simple-rest": "^4.11.4",
     "rc-pagination": "^3.2.0",
