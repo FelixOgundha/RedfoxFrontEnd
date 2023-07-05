@@ -14,6 +14,10 @@ import { format } from 'date-fns';
 import FsLightbox from "fslightbox-react";
 import Header from '../../components/partials/header';
 import Footer from '../../components/partials/footer';
+import slideOne from '../../assets/images/sample/slide1.jpeg'
+import slideTwo from '../../assets/images/sample/slide2.jpeg'
+import conference from '../../assets/images/sample/conference.jpeg'
+import drinks from '../../assets/images/sample/drinks.jpeg'
 
 const Index = () => {
   const [value, setValue] = React.useState(dayjs('2022-04-17'));
@@ -65,7 +69,7 @@ const Index = () => {
 
           <div class="slider-active dot-style">
             <div class="single-slider  hero-overly slider-height d-flex align-items-center"
-              style={{ backgroundImage: "url('https://mostuniquehotels.com/uploads/xwatamutreehousekenya.jpg.pagespeed.ic.3olY1hv6DS.jpg')" }}>
+              style={{ backgroundImage: `url(${slideTwo})` }}>
               <div class="container">
                 <div class="row justify-content-center text-center">
                   <div class="col-xl-9">
@@ -78,7 +82,7 @@ const Index = () => {
               </div>
             </div>
             <div class="single-slider  hero-overly slider-height d-flex align-items-center"
-              style={{ backgroundImage: "url('https://mostuniquehotels.com/uploads/xwatamutreehousekenya.jpg.pagespeed.ic.3olY1hv6DS.jpg')" }}>
+              style={{ backgroundImage: `url(${slideOne})` }}>
               <div class="container">
                 <div class="row justify-content-center text-center">
                   <div class="col-xl-9">
@@ -90,19 +94,7 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            <div class="single-slider  hero-overly slider-height d-flex align-items-center"
-              style={{ backgroundImage: "url('https://mostuniquehotels.com/uploads/xwatamutreehousekenya.jpg.pagespeed.ic.3olY1hv6DS.jpg')" }}>
-              <div class="container">
-                <div class="row justify-content-center text-center">
-                  <div class="col-xl-9">
-                    <div class="h1-slider-caption">
-                      <h1 data-animation="fadeInUp" data-delay=".4s">top hotel in the city</h1>
-                      <h3 data-animation="fadeInDown" data-delay=".4s">Hotel & Resourt</h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
 
@@ -219,7 +211,9 @@ const Index = () => {
                     </div>
 
                     <div class="single-select-box pt-45 mb-30">
-                      <Button variant="contained" className='p-3' onClick={() => setBookingShow(true)}>Book Room</Button>
+                      <Button
+                        variant="contained"
+                        className='p-3' onClick={() => setBookingShow(true)}>Book Room</Button>
                     </div>
                   </div>
                 </form>
@@ -250,7 +244,7 @@ const Index = () => {
                         tempor inc. </p>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. </p>
-                      <a href="#" class="btn more-btn1">Learn More <i class="ti-angle-right"></i> </a>
+                      {/* <a href="#" class="btn more-btn1">Learn More <i class="ti-angle-right"></i> </a> */}
                     </div>
                   </div>
                 </div>
@@ -392,7 +386,7 @@ const Index = () => {
         >
           <div className="illustration bg-success w-50 "
             style={{
-              backgroundImage: "url('https://mostuniquehotels.com/uploads/xwatamutreehousekenya.jpg.pagespeed.ic.3olY1hv6DS.jpg')",
+              backgroundImage: `url(${drinks})`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
               height: '650px',
@@ -420,8 +414,8 @@ const Index = () => {
 
           <div className="statement  d-flex align-items-center w-50">
             <div class="dining-caption p-5">
-              <span>Our resturent</span>
-              <h3>Dining & Drinks</h3>
+              <span>Our Conference Rooms</span>
+              <h3>Conference Facility</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
                 labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
               <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
@@ -432,7 +426,7 @@ const Index = () => {
 
           <div className="illustration bg-success w-50 "
             style={{
-              backgroundImage: "url('https://mostuniquehotels.com/uploads/xwatamutreehousekenya.jpg.pagespeed.ic.3olY1hv6DS.jpg')",
+              backgroundImage: `url(${conference})`,
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',
               height: '650px',
@@ -450,7 +444,7 @@ const Index = () => {
               <div class="col-md-12">
                 <div class="gallery-active owl-carousel">
                   <div class="gallery-img">
-                    <a href="#"><img src="https://www.boutiques.marriottbonvoy.com/wp-content/uploads/2019/10/whotels-bed.jpg" alt="" /></a>
+                    <a href="#"><img src={slideOne} alt="" /></a>
                     <h1>One</h1>
                   </div>
                   <div class="gallery-img">
