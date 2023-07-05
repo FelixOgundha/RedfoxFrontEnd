@@ -60,6 +60,7 @@ const Index = () => {
       <Header />
       <main>
 
+
         <div class="slider-area ">
 
           <div class="slider-active dot-style">
@@ -278,10 +279,10 @@ const Index = () => {
 
                 <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
                   <div class="room-img">
-                    <a href="#"><img src="assets/img/rooms/room1.jpg" alt="" /></a>
+                    <img src="assets/img/rooms/room1.jpg" alt="" />
                   </div>
                   <div class="room-caption">
-                    <h3><a href="#">VIP Room</a></h3>
+                    <h3>VIP Room</h3>
                     <div class="per-night">
                       <span><u>$</u>150 <span>/ par night</span></span>
                     </div>
@@ -292,10 +293,10 @@ const Index = () => {
 
                 <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
                   <div class="room-img">
-                    <a href="#"><img src="assets/img/rooms/room2.jpg" alt="" /></a>
+                    <img src="assets/img/rooms/room2.jpg" alt="" />
                   </div>
                   <div class="room-caption">
-                    <h3><a href="#">Executive Room</a></h3>
+                    <h3>Executive Room</h3>
                     <div class="per-night">
                       <span><u>$</u>150 <span>/ par night</span></span>
                     </div>
@@ -306,10 +307,10 @@ const Index = () => {
 
                 <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
                   <div class="room-img">
-                    <a href="#"> <img src="assets/img/rooms/room3.jpg" alt="" /></a>
+                    <img src="assets/img/rooms/room3.jpg" alt="" />
                   </div>
                   <div class="room-caption">
-                    <h3><a href="#">Executive Family Room</a></h3>
+                    <h3>Executive Family Room</h3>
                     <div class="per-night">
                       <span><u>$</u>150 <span>/ par night</span></span>
                     </div>
@@ -320,10 +321,10 @@ const Index = () => {
 
                 <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
                   <div class="room-img">
-                    <a href="#"><img src="assets/img/rooms/room4.jpg" alt="" /></a>
+                    <img src="assets/img/rooms/room4.jpg" alt="" />
                   </div>
                   <div class="room-caption">
-                    <h3><a href="#">Day Rest Room</a></h3>
+                    <h3>Day Rest Room</h3>
                     <div class="per-night">
                       <span><u>$</u>150 <span>/ par night</span></span>
                     </div>
