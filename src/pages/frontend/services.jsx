@@ -3,8 +3,34 @@ import Header from '../../components/partials/header'
 import Footer from '../../components/partials/footer'
 import conference from '../../assets/images/sample/conference.jpeg'
 import drinks from '../../assets/images/sample/drinks.jpeg'
+import BookConference from '../../components/confModal'
+import axios from 'axios'
+import { Rating } from '@mui/material'
+import { Carousel } from 'react-bootstrap'
+import AddReview from '../../components/addReview'
 
 const Services = () => {
+  const [conferenceBookingShow, setConferenceShow] = React.useState(false);
+  const [reviewsShow, setReviewsShow] = React.useState(false);
+  const [reviews, setReviews] = React.useState([])
+
+  const fetchReviews = () => {
+    axios
+      .get("https://localhost:7023/api/Comments/GetComments")
+      .then((response) => {
+        setReviews(response.data)
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  React.useEffect(() => {
+
+    fetchReviews()
+
+  }, [])
+
   return (
     <div>
       <Header />
@@ -78,7 +104,13 @@ const Services = () => {
               <h3>Conference Facility</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
                 labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
-              <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
+              <a
+                class="btn py-2"
+                onClick={() => setConferenceShow(true)}
+                style={{
+                  backgroundColor: "rgb(128, 0, 0)",
+                  color: "white"
+                }}>
                 <strong>Learn More <i class="ti-angle-right"></i></strong>
               </a>
             </div>
@@ -99,7 +131,9 @@ const Services = () => {
 
 
 
-        <div class="testimonial-area t-padding">
+        <div
+          class="testimonial-area t-padding"
+        >
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-xl-9 col-lg-9 col-md-9">
@@ -109,28 +143,49 @@ const Services = () => {
 
                     <div class="font-back-tittle mb-105">
                       <div class="archivment-front">
-                        <img src="assets/img/logo/testimonial.png" alt="" />
+                        <h3>Customer Reviews</h3>
                       </div>
                       <h3 class="archivment-back">Testimonial</h3>
                     </div>
+                    <Carousel
+                      indicators={false}
+                      controls={true}
+                      className='custom-carousel'
+                    >
+                      {
+                        reviews?.map((item, key) =>
+                          <Carousel.Item>
 
-                    <div class="testimonial-caption text-center">
-                      <p>Yorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi.
-                      </p>
+                            <div class="testimonial-caption text-center">
+                              <p>"{item.comments}"
+                              </p>
 
-                      <div class="testimonial-ratting">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                      </div>
-                      <div class="rattiong-caption">
-                        <span>Clifford Frazier, <span>Regular Client</span> </span>
-                      </div>
+                              <div class="testimonial-ratting">
+                                <Rating name="read-only" value={item.rating} readOnly />
+                              </div>
+                              <div class="rattiong-caption">
+                                <span>{item.fullName} <span>Client</span> </span>
+                              </div>
+                            </div>
+                          </Carousel.Item>
+
+                        )
+
+                      }
+
+                    </Carousel>
+                    <div className="d-flex  justify-content-center pt-4">
+                      <a
+                        class="btn py-2 text-center"
+                        onClick={() => setReviewsShow(true)}
+                        style={{
+                          backgroundColor: "rgb(128, 0, 0)",
+                          color: "white"
+                        }}>
+                        <strong>Add Review <i class="ti-angle-right"></i></strong>
+                      </a>
                     </div>
+
                   </div>
 
 
@@ -163,6 +218,20 @@ const Services = () => {
 
       </main>
       <Footer />
+
+      <BookConference
+        show={conferenceBookingShow}
+        onHide={() => {
+          setConferenceShow(false)
+        }}
+      />
+      <AddReview
+        show={reviewsShow}
+        fetchReviews={() => fetchReviews()}
+        onHide={() => {
+          setReviewsShow(false)
+        }}
+      />
     </div>
   )
 }

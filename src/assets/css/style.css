@@ -4,3 +4,9 @@
   color: #ffffff;
   /* Change this to the desired color */
 }
+
+.custom-carousel .carousel-indicators li {
+  background-color: goldenrod !important;
+  /* Set the background color to golden */
+  /* Additional styling if needed */
+}

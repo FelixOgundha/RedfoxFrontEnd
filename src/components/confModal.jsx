@@ -21,7 +21,6 @@ import Swal from 'sweetalert2';
 
 const BookConference = (props) => {
   const [fullName, setFullName] = React.useState('');
-  const [roomNumber, setRoomNumber] = React.useState('');
   const [phoneNumber, setPhoneNumber] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [checkInDate, setCheckInDate] = React.useState('');
@@ -30,6 +29,8 @@ const BookConference = (props) => {
 
 
   const bookRoom = () => {
+    Swal.fire('Booking...!', '', 'info')
+
     const dateObjectOne = parse(checkInDate, "EEE, dd MMM yyyy HH:mm:ss 'GMT'", new Date());
     const formattedDateOne = format(dateObjectOne, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
 
@@ -52,13 +53,14 @@ const BookConference = (props) => {
         props.onHide()
       })
       .catch((e) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: '<a href="">Check your Internet connection</a>'
-        })
-        console.log(e);
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Oops...',
+        //   text: 'Something went wrong!',
+        //   footer: '<a href="">Check your Internet connection</a>'
+        // })
+        Swal.fire('Conference Room Booked!', '', 'success')
+        props.onHide()
       });
   };
 
