@@ -15,16 +15,26 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import DataSetUp from '../components/Datalist/dataSetUp'
+import BookConference from '../components/confModal'
+import ConferenceDataSetup from '../components/Datalist/conferenceDataSetup'
+import CommentSetup from '../components/Datalist/comentSetups'
+
+// in src/App.jsx
+
 
 const Home = () => {
   const [bookings, setBookings] = React.useState([])
   const [bookingShow, setBookingShow] = React.useState(false);
+  const [conferenceBookingShow, setConferenceShow] = React.useState(false);
   const [isShowCancelled, setShowCancelled] = React.useState(false);
   const pages = ['', '',];
   const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [activeTab, setActiveTab] = React.useState('bookings');
+  const [selectedSection, setSelectedSection] = React.useState('booking');
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -56,9 +66,7 @@ const Home = () => {
     axios
       .get("https://localhost:7023/api/Booking/GetBookings")
       .then((response) => {
-
         setBookings(response.data)
-        console.log(response.data);
         setShowCancelled(false)
         setActiveTab('bookings');
       }).catch((e) => {
@@ -67,31 +75,38 @@ const Home = () => {
 
   }
 
-
-  const cancelReservation = (id) => {
-
+  const fetchReservation = () => {
     axios
-      .put(`https://localhost:7023/api/Booking/CancelBooking?id=${id}`)
+      .get("https://localhost:7023/api/Booking/GetReserved")
       .then((response) => {
-        fetchBookings()
-        setShowCancelled(false)
 
+        setBookings(response.data)
+        setActiveTab('reservations');
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
-  const fetchReservation = () => {
-
+  const fetchComments = () => {
     axios
-      .get("https://localhost:7023/api/Booking/GetReserved")
+      .get("https://localhost:7023/api/Comments/GetComments")
+      .then((response) => {
+        setBookings(response.data)
+        setActiveTab('comments');
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const fetchConference = () => {
+    axios
+      .get("https://localhost:7023/api/Conference/ConferenceBookings")
       .then((response) => {
 
         setBookings(response.data)
-        console.log(response.data);
-        setShowCancelled(false)
-        setActiveTab('reservations');
+        setActiveTab('conference');
       })
       .catch((e) => {
         console.log(e);
@@ -105,8 +120,6 @@ const Home = () => {
       .then((response) => {
 
         setBookings(response.data)
-        console.log(response.data);
-        setShowCancelled(true)
         setActiveTab('cancelled');
       })
       .catch((e) => {
@@ -114,6 +127,25 @@ const Home = () => {
       });
   };
 
+  const handleSelection = (selection) => {
+    switch (selection) {
+      case 'comments':
+        return <CommentSetup data={bookings} fetchBookings={() => fetchBookings()} />
+
+        break;
+      case 'conference':
+        return <ConferenceDataSetup data={bookings} fetchBookings={() => fetchConference()} />
+
+        break;
+      case 'booking':
+        return <DataSetUp data={bookings} fetchBookings={() => fetchBookings()} />
+
+        break;
+
+      default:
+        break;
+    }
+  }
 
   React.useEffect(() => {
 
@@ -136,6 +168,7 @@ const Home = () => {
                 cursor: 'pointer',
               }}
               onClick={() => {
+                setSelectedSection('booking');
                 fetchBookings();
               }}
             >
@@ -148,6 +181,7 @@ const Home = () => {
               className={`p-2 my-2 ${activeTab === 'reservations' ? activeTabStyle : ''}`}
               style={{ backgroundColor: activeTab === 'reservations' ? activeTabStyle.backgroundColor : listStyle.backgroundColor, borderRadius: '10px', cursor: 'pointer', }}
               onClick={() => {
+                setSelectedSection('booking');
                 fetchReservation();
               }}
             >
@@ -158,14 +192,27 @@ const Home = () => {
               className={`p-2 ${activeTab === 'cancelled' ? activeTabStyle : ''}`}
               style={{ backgroundColor: activeTab === 'cancelled' ? activeTabStyle.backgroundColor : listStyle.backgroundColor, borderRadius: '10px', cursor: 'pointer', }}
               onClick={() => {
+                setSelectedSection('booking');
                 fetchCancelled();
               }}
             >
               <h4 className="p-0 m-0">Cancelled</h4>
             </li>
 
+            <li className={`p-2  mt-2 ${activeTab === 'conference' ? activeTabStyle : ''}`}
+              style={{ backgroundColor: activeTab === 'conference' ? activeTabStyle.backgroundColor : listStyle.backgroundColor, borderRadius: '10px', cursor: 'pointer', }}
+              onClick={() => {
+                setSelectedSection('conference');
+                fetchConference()
+              }}
+            >
+              <h4 className="p-0 m-0">Conference</h4>
+            </li>
+
             <li className={`p-2  mt-2 ${activeTab === 'comments' ? activeTabStyle : ''}`}
-              style={{ backgroundColor: activeTab === 'comments' ? activeTabStyle.backgroundColor : listStyle.backgroundColor, borderRadius: '10px', cursor: 'pointer', }}>
+              style={{ backgroundColor: activeTab === 'comments' ? activeTabStyle.backgroundColor : listStyle.backgroundColor, borderRadius: '10px', cursor: 'pointer', }}
+              onClick={() => { setSelectedSection('comments'); fetchComments() }}
+            >
               <h4 className="p-0 m-0">Comments</h4>
             </li>
 
@@ -293,70 +340,17 @@ const Home = () => {
               </Toolbar>
             </Container>
           </AppBar>
-          <div className="container bg-white">
+          <div className="px-2 bg-white">
             <div className="d-flex  justify-content-end">
+              <Button variant="outlined" className='my-3 me-3' onClick={() => setConferenceShow(true)}>Book Conference</Button>
               <Button variant="outlined" className='my-3' onClick={() => setBookingShow(true)}>Book a Room</Button>
             </div>
             <Divider />
-            <Table striped="columns" className='w-100'>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Full Name</th>
-                  <th>Room Type</th>
-                  <th>Adults</th>
-                  <th>Children</th>
-                  <th>No. of Rooms </th>
-                  <th>CheckIn </th>
-                  <th>CheckOut </th>
-                  <th>Payment </th>
-
-                  {
-                    isShowCancelled ? <></> : <th>Actions</th>
-                  }
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  bookings.map((item, key) =>
-                    <tr key={key}>
-                      <td>{key + 1}</td>
-                      <td>{item.fullName}</td>
-                      <td>{item.roomType}</td>
-                      <td>{item.numberOfAdults}</td>
-                      <td>{item.numberOfChildren}</td>
-                      <td>{item.numberOfRooms}</td>
-                      <td>
-                        {/* {item.checkInDate} */}
-                        today
-                      </td>
-                      <td>
-                        {/* {item.checkOutDate} */}
-                        tomorrow
-                      </td>
-                      <td>{item.isPaid ? "Paid" : "Not Paid"}</td>
-
-                      {
-                        isShowCancelled ? <></> :
-                          <td>
-                            <div
-                              className="btn btn-danger w-100"
-                              onClick={() => cancelReservation(item.id)}
-
-                            >
-                              Cancel
-                            </div>
-                          </td>
-                      }
-
-                    </tr>
-                  )
-                }
 
 
-
-              </tbody>
-            </Table>
+            {
+              handleSelection(selectedSection)
+            }
           </div>
         </div>
       </div>
@@ -366,6 +360,14 @@ const Home = () => {
         onHide={() => {
           setBookingShow(false)
           fetchBookings()
+        }}
+      />
+
+      <BookConference
+        show={conferenceBookingShow}
+        fetchConference={() => fetchConference()}
+        onHide={() => {
+          setConferenceShow(false)
         }}
       />
     </div>

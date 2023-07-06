@@ -1,11 +1,14 @@
 import React from 'react'
 import Header from '../../components/partials/header'
 import Footer from '../../components/partials/footer'
+import conference from '../../assets/images/sample/conference.jpeg'
+import drinks from '../../assets/images/sample/drinks.jpeg'
 
 const Services = () => {
   return (
     <div>
       <Header />
+
       <main>
 
         <div class="slider-area">
@@ -25,61 +28,74 @@ const Services = () => {
           </div>
         </div>
 
+        <div class="row justify-content-center pt-5">
+          <div class="col-xl-8">
 
-        <div class="dining-area dining-padding-top">
-
-          <div class="single-dining-area left-img">
-            <div class="container">
-              <div class="row justify-content-end">
-                <div class="col-lg-8 col-md-8">
-                  <div class="dining-caption">
-                    <span>Our resturent</span>
-                    <h3>Dining & Drinks</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
-                    <a href="#" class="btn border-btn">Learn More <i class="ti-angle-right"></i> </a>
-                  </div>
-                </div>
+            <div class="font-back-tittle mb-45">
+              <div class="archivment-front">
+                <h3>Our Facilities</h3>
               </div>
-            </div>
-          </div>
-
-          <div class="single-dining-area right-img">
-            <div class="container">
-              <div class="row justify-content-start">
-                <div class="col-lg-8 col-md-8">
-                  <div class="dining-caption text-right">
-                    <span>Our Conference Facility</span>
-                    <h3>Conference Facility</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
-                    <a href="#" class="btn border-btn">Learn More <i class="ti-angle-right"></i></a>
-                  </div>
-                </div>
-              </div>
+              <h3 class="archivment-back">Our Facilities</h3>
             </div>
           </div>
         </div>
 
+        <div
+          className="d-flex w-100"
+          style={{ backgroundColor: "whitesmoke" }}
+        >
+          <div className="illustration bg-success w-50 "
+            style={{
+              backgroundImage: `url(${drinks})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              height: '650px',
+            }}
+          >
 
-        <div class="dining-area ">
-
-          <div class="single-dining-area left-img">
-            <div class="container">
-              <div class="row justify-content-end">
-                <div class="col-lg-8 col-md-8">
-                  <div class="dining-caption">
-                    <span>Accomodation</span>
-                    <h3>Executive Rooms</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
-                    <a href="#" class="btn border-btn">Learn More <i class="ti-angle-right"></i> </a>
-                  </div>
-                </div>
-              </div>
+          </div>
+          <div className="statement p-5  d-flex align-items-center w-50">
+            <div class="dining-caption">
+              <span>Our resturent</span>
+              <h3>Dining & Drinks</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
+              <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
+                <strong>Learn More <i class="ti-angle-right"></i></strong>
+              </a>
             </div>
           </div>
         </div>
+
+        <div
+          className="d-flex w-100"
+          style={{ backgroundColor: "white" }}
+        >
+
+          <div className="statement  d-flex align-items-center w-50">
+            <div class="dining-caption p-5">
+              <span>Our Conference Rooms</span>
+              <h3>Conference Facility</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
+              <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
+                <strong>Learn More <i class="ti-angle-right"></i></strong>
+              </a>
+            </div>
+          </div>
+
+          <div className="illustration bg-success w-50 "
+            style={{
+              backgroundImage: `url(${conference})`,
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'cover',
+              height: '650px',
+            }}
+          >
+
+          </div>
+        </div>
+
 
 
 

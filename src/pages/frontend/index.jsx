@@ -18,9 +18,10 @@ import slideOne from '../../assets/images/sample/slide1.jpeg'
 import slideTwo from '../../assets/images/sample/slide2.jpeg'
 import conference from '../../assets/images/sample/conference.jpeg'
 import drinks from '../../assets/images/sample/drinks.jpeg'
+import BookConference from '../../components/confModal';
 
 const Index = () => {
-  const [value, setValue] = React.useState(dayjs('2022-04-17'));
+  const [value, setValue] = React.useState(dayjs('07/05/2023'));
   const [children, setChildren] = React.useState('');
   const [adults, setAdults] = React.useState('');
   const [rooms, setRooms] = React.useState('');
@@ -380,6 +381,7 @@ const Index = () => {
             </div>
           </div>
         </div>
+
         <div
           className="d-flex w-100"
           style={{ backgroundColor: "whitesmoke" }}
@@ -471,6 +473,7 @@ const Index = () => {
           setBookingShow(false)
         }}
       />
+
 
 
     </div>
