@@ -14,7 +14,7 @@ function ConferenceDataSetup(props) {
     },
     {
       name: 'Phone Number',
-      selector: row => "0718627569",
+      selector: row => (row.phoneNumber === "") ? "-" : row.phoneNumber,
     },
     {
       name: 'Email',

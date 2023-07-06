@@ -51,7 +51,7 @@ function DataSetUp(props) {
     },
     {
       name: 'PhoneNo',
-      selector: row => "0718627569",
+      selector: row => (row.phoneNumber === "") ? "-" : row.phoneNumber,
     },
     {
       name: 'RoomType',
