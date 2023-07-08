@@ -22,7 +22,7 @@ function CommentSetup(props) {
       selector: row => <Rating name="read-only" value={row.rating} readOnly />,
     }, {
       name: 'Posted On ',
-      selector: row => moment(row.updatedOn).format('ll'),
+      selector: row => moment(row.updatedOn).fromNow(),
       sortable: true,
     }
   ];

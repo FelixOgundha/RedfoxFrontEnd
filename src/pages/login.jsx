@@ -1,4 +1,4 @@
-import { Button, Divider, TextField } from '@mui/material'
+import { Button, Divider, TextField, Typography } from '@mui/material'
 import { width } from '@mui/system'
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
@@ -7,9 +7,14 @@ import happy from '../assets/images/black.webp'
 import AuthService from '../services/auth.service'
 import { useHistory } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast'
+import axios from 'axios'
+import mainImage from '../assets/images/main.png'
+
+
 function Login() {
   const [isLogin, setIsLogin] = React.useState(true)
   const [isVerified, setIsVerified] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(false)
   const [userEmail, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [firstName, setFirstName] = React.useState('')
@@ -43,30 +48,41 @@ function Login() {
     }
   }
 
-  const handleLogin = async () => {
-    toast.loading('processing')
+  const handleUserLogin = () => {
 
-    try {
-      await AuthService.login(userEmail, password).then(
-        (res) => {
-          console.log(res)
-          localStorage.setItem("authCustomer", JSON.stringify(res))
-          toast.dismiss()
-          toast.success('Login Successfull')
-          // navigate("/home");
-          history.push('/home')
-        },
-        (error) => {
-          console.log(userEmail, password)
-          console.log(error);
-        }
-      );
-    } catch (err) {
-      toast.dismiss()
-      toast.error(err)
-      console.log(err);
+    toast.loading('processing...')
+
+    setIsLoading(true)
+    const user = {
+      email: userEmail,
+      password: password
     }
-  }
+    return axios
+      .post("https://localhost:7023/api/Users/Login",
+        user
+      )
+      .then((response) => {
+        var userDetails = {
+          email: response.data.email,
+          firstName: response.data.firstName,
+          lastName: response.data.lastName,
+          id: response.data.id
+        }
+
+        localStorage.setItem("DhejomelToken", JSON.stringify(response.data.token));
+        localStorage.setItem("DhejomelUser", JSON.stringify(userDetails));
+        toast.dismiss()
+        window.location = "/home"
+
+
+
+      }).catch((e) => {
+        toast.dismiss()
+        toast.error(e.response.data)
+        setIsLoading(false)
+        console.log(e);
+      });
+  };
 
   const handleVerification = async () => {
     toast.loading('processing')
@@ -100,8 +116,8 @@ function Login() {
             <Col className="login-form  d-flex flex-column h-100 justify-content-center"
               style={{ background: 'white' }}
               md={6}>
-              <h2 className="mx-5 mb-0">Welcome </h2>
-              <p className="mx-5 text-muted mt-0 pt-0">Please enter your details to login</p>
+              <h2 className="mx-5 mb-0">Dhejomel Hotel Admin </h2>
+              <Typography variant='subtitle1' className="mx-5 my-2 text-muted mt-0 pt-0">Please enter your details to login</Typography>
               <TextField id="outlined-basic" label="email" variant="outlined" className='mx-5'
                 onChange={(e) => setEmail(e.target.value)}
 
@@ -113,16 +129,12 @@ function Login() {
 
               <Button
                 variant="contained"
-                className="bg-info py-2 text-white  mx-5"
-
+                className=" py-2 text-dark  mx-5"
+                style={{ backgroundColor: "#FFD700" }}
+                onClick={() => handleUserLogin()}
               >
-                <Link to="/home"> Login</Link></Button>
+                Login</Button>
 
-
-
-              <p className="text-center mt-3">Don't have an account <Link onClick={() => setIsLogin(false)}
-
-              ><strong>SignUp</strong></Link> to verify account</p>
             </Col>
             :
             <>
@@ -208,16 +220,16 @@ function Login() {
             </>
         }
         <Col className=" m-0 p-0"
-          style={{ background: '#CEFDFF' }}
+          style={{ backgroundColor: "rgb(128, 0, 0,0.9)" }}
           md={6}
         >
           <div className="marketing-image  d-flex flex-column h-100 justify-content-center px-4">
-            <img src={happy}
+            <img src={mainImage}
               alt=""
               srcset=""
               className="img-fluid "
             />
-            <h3 className="text-center mt-2">Start Your Journey with us</h3>
+            <Typography variant='h4' className="text-center text-warning ">Home Away From Home</Typography>
           </div>
         </Col>
       </Row>

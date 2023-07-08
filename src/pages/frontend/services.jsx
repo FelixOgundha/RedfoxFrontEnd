@@ -111,7 +111,7 @@ const Services = () => {
                   backgroundColor: "rgb(128, 0, 0)",
                   color: "white"
                 }}>
-                <strong>Learn More <i class="ti-angle-right"></i></strong>
+                <strong>Book Online <i class="ti-angle-right"></i></strong>
               </a>
             </div>
           </div>

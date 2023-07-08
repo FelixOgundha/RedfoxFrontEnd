@@ -1,22 +1,8 @@
-import { Button, Rating, TextField, TextareaAutosize, Typography } from '@mui/material';
+import { Button, Rating, TextField, Typography } from '@mui/material';
 import React from 'react'
 import Modal from 'react-bootstrap/Modal';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
-import dayjs from 'dayjs';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { format, parse } from 'date-fns';
+import { format } from 'date-fns';
 import Swal from 'sweetalert2';
 
 const AddReview = (props) => {
