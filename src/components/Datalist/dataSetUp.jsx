@@ -11,7 +11,7 @@ function DataSetUp(props) {
     Swal.fire('Cancelling Reservation....', '', 'info')
 
     axios
-      .put(`https://localhost:7023/api/Booking/CancelBooking?id=${id}`)
+      .put(`https://api-dhejomel.azgard.co.ke/api/Booking/CancelBooking?id=${id}`)
       .then((response) => {
         props.fetchBookings()
         Swal.fire('Reservation Cancelled!', '', 'success')

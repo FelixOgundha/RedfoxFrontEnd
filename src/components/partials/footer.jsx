@@ -1,6 +1,13 @@
+import { Typography } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom/cjs/react-router-dom'
 
 function Footer() {
+
+  const newStyle = {
+    textDecoration: 'none'
+  }
+
   return (
     <footer>
 
@@ -14,13 +21,14 @@ function Footer() {
                   <h2 style={{ color: "white" }}>DheJomel Hotel</h2>
                 </div>
                 <div class="footer-social footer-social2">
-                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fas fa-globe"></i></a>
-                  <a href="#"><i class="fab fa-behance"></i></a>
+                  <a href="https://twitter.com/dhejomels"><i class="fab fa-facebook-f"></i></a>
+                  <a href="https://www.instagram.com/dhejomels/"><i class="fab fa-twitter"></i></a>
                 </div>
                 <div class="footer-pera">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, reprehenderit.</p>
+                  <Typography variant='body1'>We have numerous options available to
+                    enhance the level of service our guests receive,
+                    which guarantees you
+                    unforgettable experiences. </Typography>
                 </div>
               </div>
             </div>
@@ -29,10 +37,11 @@ function Footer() {
                 <div class="footer-tittle">
                   <h4>Quick Links</h4>
                   <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Rooms</a></li>
-                    <li><a href="#">Our Services</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="/" style={newStyle}>Our Menu</a></li>
+                    <li><Link to="/rooms" style={newStyle}>Our Rooms</Link></li>
+                    <li><Link to="/services" style={newStyle}>Our Services</Link></li>
+                    <li><Link to="/contact" style={newStyle}>Contact</Link></li>
+                    <li><Link to="/admin" style={newStyle}>Staff</Link></li>
                   </ul>
                 </div>
               </div>
@@ -42,8 +51,8 @@ function Footer() {
                 <div class="footer-tittle">
                   <h4>Reservations</h4>
                   <ul>
-                    <li><a href="#">Tel: +254 718 627 569</a></li>
-                    <li><a href="#">Email: booking@dhejomel.co.ke</a></li>
+                    <li>Tel: +254 718 627 569</li>
+                    <li>Email: booking@dhejomel.co.ke</li>
 
                   </ul>
                 </div>
@@ -54,11 +63,11 @@ function Footer() {
                 <div class="footer-tittle">
                   <h4>Our Location</h4>
                   <ul>
-                    <li><a href="#">Siaya County,Siaya Town, </a></li>
-                    <li><a href="#">Rabango Road,Next to CDF Office Siaya</a></li>
+                    <li>Siaya County,Siaya Town, </li>
+                    <li>Rabango Road,Next to CDF Office Siay</li>
                   </ul>
 
-                  <div class="footer-form">
+                  <div class="footer-form d-none">
                     <div id="mc_embed_signup">
                       <form target="_blank"
                         action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"

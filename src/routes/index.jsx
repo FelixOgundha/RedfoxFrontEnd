@@ -11,9 +11,9 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       {/* <Route exact key="homepage" path="/" component={Table} />, */}
-      <Route exact key="login" path="/" component={Login} />,
+      <Route exact key="login" path="/admin" component={Login} />,
       <Route exact key="home" path="/home" component={Home} />,
-      <Route exact key="front" path="/front" component={Index} />,
+      <Route exact key="front" path="/" component={Index} />,
       <Route exact key="contact" path="/contact" component={Contact} />,
       <Route exact key="contact" path="/services" component={Services} />,
       <Route exact key="rooms" path="/rooms" component={Rooms} />,

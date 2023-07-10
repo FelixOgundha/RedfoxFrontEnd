@@ -21,12 +21,12 @@ import drinks from '../../assets/images/sample/drinks.jpeg'
 import BookConference from '../../components/confModal';
 
 const Index = () => {
-  const [value, setValue] = React.useState(dayjs('07/05/2023'));
-  const [children, setChildren] = React.useState('');
-  const [adults, setAdults] = React.useState('');
-  const [rooms, setRooms] = React.useState('');
-  const [checkinDate, setCheckinDate] = React.useState('');
-  const [checkOutDate, setCheckOutDate] = React.useState('');
+  const [value, setValue] = React.useState(dayjs());
+  const [children, setChildren] = React.useState();
+  const [adults, setAdults] = React.useState();
+  const [rooms, setRooms] = React.useState();
+  const [checkinDate, setCheckinDate] = React.useState(dayjs(Date.now()));
+  const [checkOutDate, setCheckOutDate] = React.useState(dayjs(Date.now()));
   const [age, setAge] = React.useState('');
   const [bookings, setBookings] = React.useState([])
   const [bookingShow, setBookingShow] = React.useState(false);
@@ -156,6 +156,7 @@ const Index = () => {
                             label="Age"
                             onChange={(e) => setAdults(e.target.value)}
                           >
+                            <MenuItem value={1}>0</MenuItem>
                             <MenuItem value={1}>1</MenuItem>
                             <MenuItem value={2}>2</MenuItem>
                             <MenuItem value={3}>3</MenuItem>
@@ -179,6 +180,7 @@ const Index = () => {
                             label="Age"
                             onChange={(e) => setChildren(e.target.value)}
                           >
+                            <MenuItem value={1}>0</MenuItem>
                             <MenuItem value={1}>1</MenuItem>
                             <MenuItem value={2}>2</MenuItem>
                             <MenuItem value={3}>3</MenuItem>
@@ -214,7 +216,8 @@ const Index = () => {
                     <div class="single-select-box pt-45 mb-30">
                       <Button
                         variant="contained"
-                        className='p-3' onClick={() => setBookingShow(true)}>Book Room</Button>
+                        className='p-3' onClick={() => setBookingShow(true)}>Book Room
+                      </Button>
                     </div>
                   </div>
                 </form>
@@ -238,13 +241,14 @@ const Index = () => {
                 </div>
                 <div class="ms-4 col-xl-4 col-lg-4">
                   <div class="customer-caption">
-                    <span>About our company</span>
-                    <h2>Make the customer the hero of your story</h2>
+                    <span>About Dhejomel</span>
+                    <h2>Visit us Today</h2>
                     <div class="caption-details">
-                      <p class="pera-dtails">Lorem ipsum dolor sit amet, consectetur adipisic- ing elit, sed do eiusmod
-                        tempor inc. </p>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. </p>
+                      <p class="pera-dtails">Set on an expansive location in Siaya town, Dhe Jomels gives
+                        guests a wide range of accommodation options ranging from
+                        spacious deluxe, superior deluxe, family rooms to executive rooms
+                        all with elegant interiors, internet access and room service.</p>
+
                       {/* <a href="#" class="btn more-btn1">Learn More <i class="ti-angle-right"></i> </a> */}
                     </div>
                   </div>
@@ -270,11 +274,26 @@ const Index = () => {
               </div>
             </div>
             <div class="row">
-              <div class="col-xl-3 col-lg-6 col-md-6">
+
+              <div class="col-xl-4 col-lg-6 col-md-6">
 
                 <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
                   <div class="room-img">
-                    <img src="assets/img/rooms/room1.jpg" alt="" />
+                    <img src="assets/img/rooms/room2.jpg" alt="" />
+                  </div>
+                  <div class="room-caption">
+                    <h3>Superior Room</h3>
+                    <div class="per-night">
+                      <span><u>$</u>150 <span>/ par night</span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-6 col-md-6">
+
+                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
+                  <div class="room-img">
+                    <img src="assets/img/rooms/room3.jpg" alt="" />
                   </div>
                   <div class="room-caption">
                     <h3>VIP Room</h3>
@@ -284,42 +303,14 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-              <div class="col-xl-3 col-lg-6 col-md-6">
-
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
-                  <div class="room-img">
-                    <img src="assets/img/rooms/room2.jpg" alt="" />
-                  </div>
-                  <div class="room-caption">
-                    <h3>Executive Room</h3>
-                    <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-6 col-md-6">
-
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
-                  <div class="room-img">
-                    <img src="assets/img/rooms/room3.jpg" alt="" />
-                  </div>
-                  <div class="room-caption">
-                    <h3>Executive Family Room</h3>
-                    <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-6 col-md-6">
+              <div class="col-xl-4 col-lg-6 col-md-6">
 
                 <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
                   <div class="room-img">
                     <img src="assets/img/rooms/room4.jpg" alt="" />
                   </div>
                   <div class="room-caption">
-                    <h3>Day Rest Room</h3>
+                    <h3>Executive Room</h3>
                     <div class="per-night">
                       <span><u>$</u>150 <span>/ par night</span></span>
                     </div>
@@ -336,40 +327,7 @@ const Index = () => {
 
 
 
-        <div class="dining-area dining-padding-top d-none">
 
-          <div class="single-dining-area left-img">
-            <div class="container">
-              <div class="row justify-content-end">
-                <div class="col-lg-8 col-md-8 ps-5">
-                  <div class="dining-caption">
-                    <span>Our resturent</span>
-                    <h3>Dining & Drinks</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
-                    <a href="#" class="btn border-btn">Learn More <i class="ti-angle-right"></i> </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="single-dining-area right-img">
-            <div class="container">
-              <div class="row justify-content-start">
-                <div class="col-lg-8 col-md-8">
-                  <div class="dining-caption text-right">
-                    <span>Our Conference Room</span>
-                    <h3>Conference Facility</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
-                      labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
-                    <a href="#" class="btn border-btn">Learn More <i class="ti-angle-right"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="row justify-content-center pt-5">
           <div class="col-xl-8">
 
@@ -400,8 +358,23 @@ const Index = () => {
             <div class="dining-caption">
               <span>Our resturent</span>
               <h3>Dining & Drinks</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
+              <p>For a delicious culinary experience,
+                dine at the Dhe Jomels Restaurant.
+                Sample our wide range of cuisine
+                done well by our
+                Executive chef at our indoor restaurant. </p>
+              <p>
+                We have special consideration
+                for different clients thus offer
+                vegetarian and non vegetarian
+              </p>
+              <p>
+                our restaurant is known for
+                its mouth-watering cuisine,
+                with the famous
+                sizzling Nyama Choma
+                a must-taste.
+              </p>
               <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
                 <strong>Learn More <i class="ti-angle-right"></i></strong>
               </a>
@@ -418,8 +391,21 @@ const Index = () => {
             <div class="dining-caption p-5">
               <span>Our Conference Rooms</span>
               <h3>Conference Facility</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
+              <p>Meeting Simplified. Make your next meeting a Success. For a truly
+                seamless experience, Dhe Jomels now offers the choice of different
+                meeting packages specifically developed for meting up to 150
+                people. </p>
+              <p>
+                The hotel has hosted a myriad of top level conferences and guests at
+                its state of the art banqueting and conferencing facilities. Among
+                notable events include high profile local and international seminars
+                among others.
+              </p>
+              <p>
+                With free Wi-Fi, aerated and well-lit spaces, our conference rooms
+                allow for a variety of set-ups for meetings, break-out sessions,
+                workshops or retreats.
+              </p>
               <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
                 <strong>Learn More <i class="ti-angle-right"></i></strong>
               </a>

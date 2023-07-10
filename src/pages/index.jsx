@@ -57,7 +57,7 @@ const HomePage = () => {
   const fetchMember = () => {
 
     axios
-      .post("https://localhost:7155/api/Auth/GetUsers")
+      .post("https://api-dhejomel.azgard.co.ke/api/Auth/GetUsers")
       .then((response) => {
 
         setMembers(response.data)

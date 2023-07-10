@@ -46,7 +46,7 @@ const BookConference = (props) => {
     };
 
     axios
-      .post("https://localhost:7023/api/Conference/AddBooking", payload)
+      .post("https://api-dhejomel.azgard.co.ke/api/Conference/AddBooking", payload)
       .then((response) => {
         Swal.fire('Conference Room Booked!', '', 'success')
         props.fetchConference()

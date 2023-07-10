@@ -58,7 +58,7 @@ function Login() {
       password: password
     }
     return axios
-      .post("https://localhost:7023/api/Users/Login",
+      .post("https://api-dhejomel.azgard.co.ke/api/Users/Login",
         user
       )
       .then((response) => {
@@ -78,8 +78,7 @@ function Login() {
 
       }).catch((e) => {
         toast.dismiss()
-        toast.error(e.response.data)
-        setIsLoading(false)
+        toast.error(e.response?.data)
         console.log(e);
       });
   };

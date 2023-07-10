@@ -1,15 +1,32 @@
 import { Chip, Divider, Paper, Typography } from '@mui/material'
+import moment from 'moment'
 import React from 'react'
 import { Table } from 'react-bootstrap'
 
 function Dashboard() {
+  const [user, setUser] = React.useState(localStorage.getItem("DhejomelUser"))
+
+  const getUser = () => {
+    if (localStorage.getItem("DhejomelUser") !== null) {
+      setUser(localStorage.getItem("DhejomelUser"))
+    } else {
+      window.location = "/admin"
+    }
+
+
+  }
+  React.useEffect(() => {
+    getUser()
+    console.log(user);
+  }, [])
+
   return (
     <div className='px-4 mt-3 container'>
       <Typography variant="h4" component="h2">
-        Welcome, Felix Ogundha
+        Welcome, {user.firstName} {user.lastName}
       </Typography>
       <Typography variant="subtitle2" component="h2">
-        Today, 6th July 2023
+        Today, {moment(Date.now()).format('ll')}
       </Typography>
       <div className="d-flex  py-4 flex-grow-1">
         <Paper elevation={3} className='w-50 p-4'>

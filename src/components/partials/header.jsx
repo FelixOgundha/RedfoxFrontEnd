@@ -38,7 +38,7 @@ function Header() {
                         {/* <NavLink exact to="/front" activeClassName="active">
                           Home
                         </NavLink> */}
-                        <a href="/front" style={{ textDecoration: 'none' }}>Home</a>
+                        <a href="/" style={{ textDecoration: 'none' }}>Home</a>
                       </li>
                       <li>
                         <NavLink exact to="/rooms" activeClassName="active" style={{ textDecoration: 'none' }}>

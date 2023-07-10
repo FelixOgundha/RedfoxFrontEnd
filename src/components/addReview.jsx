@@ -24,7 +24,7 @@ const AddReview = (props) => {
     };
 
     axios
-      .post("https://localhost:7023/api/Comments/AddComment", payload)
+      .post("https://api-dhejomel.azgard.co.ke/api/Comments/AddComment", payload)
       .then((response) => {
         Swal.fire('Thank you for your Feedback!', '', 'success')
         props.fetchReviews()

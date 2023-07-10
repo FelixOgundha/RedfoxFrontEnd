@@ -1,22 +1,31 @@
 {
   "files": {
-    "main.css": "/bamiogunfemi/react-redux-boilerplatestatic/css/main.6dea0f05.chunk.css",
-    "main.js": "/bamiogunfemi/react-redux-boilerplatestatic/js/main.f5396132.chunk.js",
-    "main.js.map": "/bamiogunfemi/react-redux-boilerplatestatic/js/main.f5396132.chunk.js.map",
-    "runtime-main.js": "/bamiogunfemi/react-redux-boilerplatestatic/js/runtime-main.f2d9724f.js",
-    "runtime-main.js.map": "/bamiogunfemi/react-redux-boilerplatestatic/js/runtime-main.f2d9724f.js.map",
-    "static/js/2.a0f3bc00.chunk.js": "/bamiogunfemi/react-redux-boilerplatestatic/js/2.a0f3bc00.chunk.js",
-    "static/js/2.a0f3bc00.chunk.js.map": "/bamiogunfemi/react-redux-boilerplatestatic/js/2.a0f3bc00.chunk.js.map",
-    "static/js/3.a47c36c5.chunk.js": "/bamiogunfemi/react-redux-boilerplatestatic/js/3.a47c36c5.chunk.js",
-    "static/js/3.a47c36c5.chunk.js.map": "/bamiogunfemi/react-redux-boilerplatestatic/js/3.a47c36c5.chunk.js.map",
-    "index.html": "/bamiogunfemi/react-redux-boilerplateindex.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/bamiogunfemi/react-redux-boilerplatestatic/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.a0f3bc00.chunk.js.LICENSE.txt": "/bamiogunfemi/react-redux-boilerplatestatic/js/2.a0f3bc00.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.b5378d60.chunk.css",
+    "main.js": "/static/js/main.fddfddac.chunk.js",
+    "main.js.map": "/static/js/main.fddfddac.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4b1ac306.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4b1ac306.js.map",
+    "static/css/2.8bf929c7.chunk.css": "/static/css/2.8bf929c7.chunk.css",
+    "static/js/2.a00a079b.chunk.js": "/static/js/2.a00a079b.chunk.js",
+    "static/js/2.a00a079b.chunk.js.map": "/static/js/2.a00a079b.chunk.js.map",
+    "static/js/3.75a00e1f.chunk.js": "/static/js/3.75a00e1f.chunk.js",
+    "static/js/3.75a00e1f.chunk.js.map": "/static/js/3.75a00e1f.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.8bf929c7.chunk.css.map": "/static/css/2.8bf929c7.chunk.css.map",
+    "static/css/main.b5378d60.chunk.css.map": "/static/css/main.b5378d60.chunk.css.map",
+    "static/js/2.a00a079b.chunk.js.LICENSE.txt": "/static/js/2.a00a079b.chunk.js.LICENSE.txt",
+    "static/media/black.137574d1.webp": "/static/media/black.137574d1.webp",
+    "static/media/conference.ed449d7e.jpeg": "/static/media/conference.ed449d7e.jpeg",
+    "static/media/drinks.3f0e90b8.jpeg": "/static/media/drinks.3f0e90b8.jpeg",
+    "static/media/main.f9fc9692.png": "/static/media/main.f9fc9692.png",
+    "static/media/slide1.d7d2bbb4.jpeg": "/static/media/slide1.d7d2bbb4.jpeg",
+    "static/media/slide2.7550296a.jpeg": "/static/media/slide2.7550296a.jpeg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f2d9724f.js",
-    "static/js/2.a0f3bc00.chunk.js",
-    "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.f5396132.chunk.js"
+    "static/js/runtime-main.4b1ac306.js",
+    "static/css/2.8bf929c7.chunk.css",
+    "static/js/2.a00a079b.chunk.js",
+    "static/css/main.b5378d60.chunk.css",
+    "static/js/main.fddfddac.chunk.js"
   ]
 }

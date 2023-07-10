@@ -13,7 +13,7 @@ const Payment = (props) => {
     };
 
     axios
-      .post("https://localhost:7023/api/Payment/LipaNaMpesa", payload)
+      .post("https://api-dhejomel.azgard.co.ke/api/Payment/LipaNaMpesa", payload)
       .then((response) => {
 
       })

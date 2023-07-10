@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Avatar, Button, ListItem, ListItemAvatar, ListItemText, TextField } from '@mui/material';
 import React from 'react'
 import Modal from 'react-bootstrap/Modal';
 import InputLabel from '@mui/material/InputLabel';
@@ -11,6 +11,12 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
+import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+import WorkIcon from '@mui/icons-material/Work';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { format, parse } from 'date-fns';
 
 const BookRoom = (props) => {
   const [age, setAge] = React.useState('');
@@ -22,15 +28,19 @@ const BookRoom = (props) => {
   const [checkInDate, setCheckInDate] = React.useState('');
   const [checkoutDate, setCheckOutDate] = React.useState('');
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+
 
   const bookRoom = () => {
+    const dateObjectOne = parse(checkInDate, "EEE, dd MMM yyyy HH:mm:ss 'GMT'", new Date());
+    const formattedDateOne = format(dateObjectOne, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
+
+    const dateObjectTwo = parse(checkoutDate, "EEE, dd MMM yyyy HH:mm:ss 'GMT'", new Date());
+    const formattedDateTwo = format(dateObjectTwo, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
+
     const payload = {
       fullName: fullName,
-      checkInDate: "2023-07-02T19:22:02.252Z",
-      checkOutDate: "2023-07-02T19:22:02.252Z",
+      checkInDate: formattedDateOne,
+      checkOutDate: formattedDateTwo,
       roomType: roomType,
       numberOfRooms: parseInt(roomNumber),
       numberOfAdults: parseInt(adults),
@@ -41,7 +51,7 @@ const BookRoom = (props) => {
     };
 
     axios
-      .post("https://localhost:7023/api/Booking/AddBooking", payload)
+      .post("https://api-dhejomel.azgard.co.ke/api/Booking/AddBooking", payload)
       .then((response) => {
         props.onHide()
       })
@@ -66,7 +76,7 @@ const BookRoom = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          
+
           <div className="d-flex flex-column">
             <TextField id="outlined-basic" label="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} variant="outlined" className='my-3' />
             <FormControl sx={{ minWidth: 120 }}>
@@ -111,18 +121,33 @@ const BookRoom = (props) => {
               className='mb-3'
             />
 
-            <TextField
-              id="outlined-basic"
-              label="Checkin Date"
-              variant="outlined"
-            />
 
-            <TextField
-              id="outlined-basic"
-              label="Checkout Date"
-              variant="outlined"
-              className='my-3'
-            />
+            <div className="d-flex w-100  justify-content-between">
+              <LocalizationProvider dateAdapter={AdapterDayjs} >
+                <DemoContainer components={['DatePicker', 'DatePicker']}>
+                  <DatePicker
+                    label="Check In "
+                    value={checkInDate}
+                    onChange={(e) => {
+                      setCheckInDate(e, "yyyy-MM-dd")
+                    }}
+                    className='w-100'
+                  />
+                </DemoContainer>
+              </LocalizationProvider>
+
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={['DatePicker', 'DatePicker']}>
+                  <DatePicker
+                    label="Check Out"
+                    value={checkoutDate}
+                    onChange={(e) => setCheckOutDate(e, "yyyy-MM-dd")}
+                    className='w-100'
+
+                  />
+                </DemoContainer>
+              </LocalizationProvider>
+            </div>
 
             <FormControl className='mt-3'>
               <FormLabel id="demo-radio-buttons-group-label">Payment Mode</FormLabel>
@@ -134,7 +159,7 @@ const BookRoom = (props) => {
               >
                 <FormControlLabel value="Mpesa" control={<Radio />} label="MPesa" />
                 <FormControlLabel value="Cash" control={<Radio />} label="Cash" />
-                <FormControlLabel value="Reserve" control={<Radio />} label="Cash" />
+                <FormControlLabel value="Reserve" control={<Radio />} label="Reserve" />
               </RadioGroup>
             </FormControl>
           </div>

@@ -78,7 +78,7 @@ const Home = () => {
   const fetchBookings = () => {
 
     axios
-      .get("https://localhost:7023/api/Booking/GetBookings")
+      .get("https://api-dhejomel.azgard.co.ke/api/Booking/GetBookings")
       .then((response) => {
         setBookings(response.data)
         setShowCancelled(false)
@@ -91,7 +91,7 @@ const Home = () => {
 
   const fetchReservation = () => {
     axios
-      .get("https://localhost:7023/api/Booking/GetReserved")
+      .get("https://api-dhejomel.azgard.co.ke/api/Booking/GetReserved")
       .then((response) => {
 
         setBookings(response.data)
@@ -104,7 +104,7 @@ const Home = () => {
 
   const fetchComments = () => {
     axios
-      .get("https://localhost:7023/api/Comments/GetComments")
+      .get("https://api-dhejomel.azgard.co.ke/api/Comments/GetComments")
       .then((response) => {
         setBookings(response.data)
         setActiveTab('comments');
@@ -116,7 +116,7 @@ const Home = () => {
 
   const fetchConference = () => {
     axios
-      .get("https://localhost:7023/api/Conference/ConferenceBookings")
+      .get("https://api-dhejomel.azgard.co.ke/api/Conference/ConferenceBookings")
       .then((response) => {
 
         setBookings(response.data)
@@ -130,7 +130,7 @@ const Home = () => {
   const fetchCancelled = () => {
 
     axios
-      .get("https://localhost:7023/api/Booking/GetCancelled")
+      .get("https://api-dhejomel.azgard.co.ke/api/Booking/GetCancelled")
       .then((response) => {
 
         setBookings(response.data)

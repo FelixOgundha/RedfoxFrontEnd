@@ -80,7 +80,7 @@ const BookingModal = (props) => {
     };
 
     axios
-      .post("https://localhost:7023/api/Booking/AddBooking", payload)
+      .post("https://api-dhejomel.azgard.co.ke/api/Booking/AddBooking", payload)
       .then((response) => {
         success()
         setLoading(false)

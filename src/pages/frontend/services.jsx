@@ -16,7 +16,7 @@ const Services = () => {
 
   const fetchReviews = () => {
     axios
-      .get("https://localhost:7023/api/Comments/GetComments")
+      .get("https://api-dhejomel.azgard.co.ke/api/Comments/GetComments")
       .then((response) => {
         setReviews(response.data)
       })
@@ -84,8 +84,23 @@ const Services = () => {
             <div class="dining-caption">
               <span>Our resturent</span>
               <h3>Dining & Drinks</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
+              <p>For a delicious culinary experience,
+                dine at the Dhe Jomels Restaurant.
+                Sample our wide range of cuisine
+                done well by our
+                Executive chef at our indoor restaurant. </p>
+              <p>
+                We have special consideration
+                for different clients thus offer
+                vegetarian and non vegetarian
+              </p>
+              <p>
+                our restaurant is known for
+                its mouth-watering cuisine,
+                with the famous
+                sizzling Nyama Choma
+                a must-taste.
+              </p>
               <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
                 <strong>Learn More <i class="ti-angle-right"></i></strong>
               </a>
@@ -102,8 +117,21 @@ const Services = () => {
             <div class="dining-caption p-5">
               <span>Our Conference Rooms</span>
               <h3>Conference Facility</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br /> tempor incididunt ut
-                labore et dolore magna aliqua. Ut enim ad minim <br />veniam, quis nostrud.</p>
+              <p>Meeting Simplified. Make your next meeting a Success. For a truly
+                seamless experience, Dhe Jomels now offers the choice of different
+                meeting packages specifically developed for meting up to 150
+                people. </p>
+              <p>
+                The hotel has hosted a myriad of top level conferences and guests at
+                its state of the art banqueting and conferencing facilities. Among
+                notable events include high profile local and international seminars
+                among others.
+              </p>
+              <p>
+                With free Wi-Fi, aerated and well-lit spaces, our conference rooms
+                allow for a variety of set-ups for meetings, break-out sessions,
+                workshops or retreats.
+              </p>
               <a
                 class="btn py-2"
                 onClick={() => setConferenceShow(true)}
