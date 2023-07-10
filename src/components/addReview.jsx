@@ -4,15 +4,17 @@ import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 import { format } from 'date-fns';
 import Swal from 'sweetalert2';
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 
 const AddReview = (props) => {
   const [fullName, setFullName] = React.useState('');
   const [comment, setComment] = React.useState('');
   const [rating, setRating] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
 
   const addReview = () => {
-    Swal.fire('Adding Review...!', '', 'info')
-
+    setLoading(true)
     const formattedDateOne = format(Date.now(), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
 
     const payload = {
@@ -28,9 +30,12 @@ const AddReview = (props) => {
       .then((response) => {
         Swal.fire('Thank you for your Feedback!', '', 'success')
         props.fetchReviews()
+        setLoading(false)
         props.onHide()
       })
       .catch((e) => {
+        setLoading(false)
+
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -95,11 +100,25 @@ const AddReview = (props) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="contained"
-            onClick={addReview}
-          >Add Review
-          </Button>
+          {
+            loading ?
+              <LoadingButton
+                color="secondary"
+                loading={loading}
+                loadingPosition="start"
+                startIcon={<SaveIcon />}
+                variant="contained"
+                disabled
+              >
+                <span>Processing..</span>
+              </LoadingButton> :
+              <Button
+                variant="contained"
+                onClick={addReview}
+              >Add Review
+              </Button>
+          }
+
         </Modal.Footer>
       </Modal>
     </div>

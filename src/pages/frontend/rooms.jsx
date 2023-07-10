@@ -2,6 +2,9 @@ import React from 'react'
 import Header from '../../components/partials/header'
 import Footer from '../../components/partials/footer'
 import FsLightbox from 'fslightbox-react'
+import VIP from '../../assets/images/rooms/VIP Room.jpeg'
+import Executive from '../../assets/images/rooms/executive.jpeg'
+import Superior from '../../assets/images/rooms/VIP.jpeg'
 
 const Rooms = () => {
   const [toggler, setToggler] = React.useState(false);
@@ -54,92 +57,73 @@ const Rooms = () => {
               </div>
             </div>
             <div class="row">
-              <div class="col-xl-4 col-lg-6 col-md-6">
+              <div class="row">
 
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
-                  <div class="room-img">
+                <div class="col-xl-4 col-lg-6 col-md-6">
 
-                    <img src="assets/img/rooms/room1.jpg" alt="" />
-
-                  </div>
-                  <div class="room-caption">
-                    <h3>Classic Double Bed</h3>
-                    <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
+                  <div
+                    class="single-room mb-50"
+                  // onClick={() => setToggler(!toggler)}
+                  >
+                    <div class="room-img">
+                      <img src={Superior} alt="" />
+                    </div>
+                    <div class="room-caption">
+                      <h3>Superior Room</h3>
+                      <div class="per-night d-flex flex-column">
+                        <span>Ksh.8,500  <span>/ Bed and Breakfast</span> </span>
+                        <span>Ksh. 9,500 <span>Half board</span></span>
+                        <span>Ksh. 10,000 <span>Full Board</span></span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-xl-4 col-lg-6 col-md-6">
+                <div class="col-xl-4 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
-                  <div class="room-img">
-                    <img src="assets/img/rooms/room2.jpg" alt="" />
-                  </div>
-                  <div class="room-caption">
-                    <h3>Classic Double Bed</h3>
-                    <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
+                  <div
+                    class="single-room mb-50"
+                  // onClick={() => setToggler(!toggler)}
+                  >
+                    <div class="room-img">
+                      <img src={VIP} alt="" />
+                    </div>
+                    <div class="room-caption">
+                      <h3>VIP Room</h3>
+                      <div class="per-night d-flex flex-column">
+                        <span>Ksh.8,500  <span>/ Bed and Breakfast</span> </span>
+                        <span>Ksh. 9,500 <span>Half board</span></span>
+                        <span>Ksh. 10,000 <span>Full Board</span></span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-xl-4 col-lg-6 col-md-6">
+                <div class="col-xl-4 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
-                  <div class="room-img">
-                    <img src="assets/img/rooms/room3.jpg" alt="" />
-                  </div>
-                  <div class="room-caption">
-                    <h3>Classic Double Bed</h3>
-                    <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
+                  <div
+                    class="single-room mb-50"
+                  // onClick={() => setToggler(!toggler)}
+                  >
+                    <div class="room-img">
+                      <img src={Executive} alt="" />
+                    </div>
+                    <div class="room-caption">
+                      <h3>Executive Room</h3>
+                      <div class="per-night">
+                        <div class="per-night d-flex flex-column">
+                          <span>Ksh.5,500  <span>/ Bed and Breakfast</span> </span>
+                          <span>Ksh. 6,500 <span>Half board</span></span>
+                          <span>Ksh. 7,000 <span>Full Board</span></span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-xl-4 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
-                  <div class="room-img">
-                    <img src="assets/img/rooms/room4.jpg" alt="" />
-                  </div>
-                  <div class="room-caption">
-                    <h3>Classic Double Bed</h3>
-                    <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-4 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
-                  <div class="room-img">
-                    <img src="assets/img/rooms/room5.jpg" alt="" />
-                  </div>
-                  <div class="room-caption">
-                    <h3>Classic Double Bed</h3>
-                    <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
-                    </div>
-                  </div>
-                </div>
               </div>
-              <div class="col-xl-4 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
-                  <div class="room-img">
-                    <img src="assets/img/rooms/room6.jpg" alt="" />
-                  </div>
-                  <div class="room-caption">
-                    <h3>Classic Double Bed</h3>
-                    <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+
             </div>
 
           </div>

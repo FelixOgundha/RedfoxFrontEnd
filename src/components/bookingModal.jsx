@@ -26,6 +26,9 @@ import { format, parse } from 'date-fns';
 import LoadingButton from '@mui/lab/LoadingButton';
 import SaveIcon from '@mui/icons-material/Save';
 import Payment from './payment';
+import VIP from '../assets/images/rooms/VIP Room.jpeg'
+import Executive from '../assets/images/rooms/executive.jpeg'
+import Superior from '../assets/images/rooms/VIP.jpeg'
 
 const BookingModal = (props) => {
   const [fullName, setFullName] = React.useState('');
@@ -37,11 +40,11 @@ const BookingModal = (props) => {
   const [checkoutDate, setCheckOutDate] = React.useState('');
   const [showSummary, setShowSummary] = React.useState(false);
   const [phoneNumber, setPhoneNumber] = React.useState('');
-  const [paymentMode, setPaymentMode] = React.useState('');
+  const [paymentMode, setPaymentMode] = React.useState('Cash');
   const [loading, setLoading] = React.useState(false);
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   const [paymentShow, setPaymentShow] = React.useState(false);
-  const [processpayment, setProcessPayment] = React.useState(true);
+  const [processpayment, setProcessPayment] = React.useState(false);
 
   const success = () => {
     Swal.fire(
@@ -57,6 +60,47 @@ const BookingModal = (props) => {
     amount: roomType.price
   };
 
+  const rooms = [
+    {
+      type: 'VIP Room (Bed and Breakfast)',
+      price: 'KES 8,500',
+      images: [VIP]
+    }, {
+      type: 'VIP Room (Full Board)',
+      price: 'KES 10,000',
+      images: [VIP]
+    },
+    {
+      type: 'VIP Room (Half Board)',
+      price: 'KES 9,500',
+      images: [VIP]
+    },
+
+    {
+      type: 'Executive Room (Bed and breakfast)',
+      price: 'KES 5,500',
+      images: [Executive]
+    }, {
+      type: 'Executive Room (Full Board)',
+      price: 'KES 7,000',
+      images: [Executive]
+    },
+    {
+      type: 'Executive Room (Half Board)',
+      price: 'KES 6,500',
+      images: [Executive]
+    }, {
+      type: 'Executive Family Room ',
+      price: 'KES 11,500',
+      images: [Executive]
+    },
+    {
+      type: 'Day Rest Room ',
+      price: 'KES 3,000',
+      images: [Superior]
+    },
+
+  ]
 
   const bookRoom = () => {
     setLoading(true)
@@ -234,39 +278,30 @@ const BookingModal = (props) => {
                           id="demo-simple-select-helper"
                           value={roomType}
                           onChange={(e) => setRoomType(e.target.value)}
-                          label={roomType.type}
+                          label="Room Type"
 
                         >
                           <MenuItem value="">
                             <em>None</em>
                           </MenuItem>
-                          <MenuItem
-                            value={{
-                              type: 'Single',
-                              price: '8000',
-                              images: ['https://www.cvent.com/sites/default/files/image/2021-10/hotel%20room%20with%20beachfront%20view.jpg', 'https://i.pinimg.com/originals/a5/25/86/a52586ab1561ad8e9a9f6f7b7b159002.jpg']
-                            }}
-                            selected={roomType.type === 'Single'}>
-                            Single - KES 8,000
-                          </MenuItem>
-                          <MenuItem
-                            value={{
-                              type: 'Double',
-                              price: '9000',
-                              images: ['https://thehollandhotel.com/wp-content/uploads/2019/07/Double-bed-image-1024x576.jpg', 'https://res.cloudinary.com/traveltripperweb/image/upload/c_limit,f_auto,h_2500,q_auto,w_2500/v1580455406/vahre6fc9gt8ygcdmkuu.jpg']
-                            }}
-                            selected={roomType.type === 'Double'}>
-                            Double - KES 9,000
-                          </MenuItem>
-                          <MenuItem
-                            value={{
-                              type: 'Executive',
-                              price: '10,000',
-                              images: ['https://www.peninsula.com/en/-/media/images/new-york/03roomssuites/suitetype_03_executibe/executive-suite-bedroom2_p.jpg?mw=905&hash=2F8C917B0429702E273E9212FDAD4FDE', 'https://www.sarova-bullhotel.com/wp-content/uploads/Club-Room-6.jpg']
-                            }}
-                            selected={roomType.type === 'Executive'}>
-                            Executive - KES 10,000
-                          </MenuItem>
+
+
+                          {
+                            rooms.map((item, key) =>
+                              <MenuItem
+                                value={{
+                                  type: item.type,
+                                  price: item.price,
+                                  images: item.images
+                                }}
+                                selected={roomType.type === item.type}>
+                                {
+                                  item.type + " - " + item.price
+                                }
+                              </MenuItem>
+                            )
+                          }
+
                         </Select>
                       </FormControl>
                       <FormControl className='mt-3'>
@@ -279,14 +314,14 @@ const BookingModal = (props) => {
                           onChange={(e) => setPaymentMode(e.target.value)}
                           className='d-flex'
                         >
-                          <FormControlLabel value="Mpesa" control={<Radio />} label="MPesa" onClick={() => setProcessPayment(true)} />
+                          {/* <FormControlLabel value="Mpesa" control={<Radio />} label="MPesa" onClick={() => setProcessPayment(true)} /> */}
                           <FormControlLabel value="Cash" control={<Radio />} onClick={() => setProcessPayment(false)} label="Cash on Arrival" />
                           <FormControlLabel value="Reserve" control={<Radio />} onClick={() => setProcessPayment(false)} label="Make Reservation" />
                         </RadioGroup>
                       </FormControl>
                     </div>
                   </div>
-                  <div className="col">
+                  <div className="col ">
                     <div className="room-details ms-3 w-100">
 
                       <div className="w-100 bg-info">
@@ -305,7 +340,13 @@ const BookingModal = (props) => {
 
                         </Carousel>
                       </div>
-                      <h5 className='py-3'><strong>Room Type: {roomNumber} {roomType.type + " - " + "KES " + roomType.price}</strong></h5>
+                      {
+                        roomType === '' ?
+                          <>
+                          </>
+                          :
+                          <h5 className='py-3'><strong>Room Type: {roomNumber} {roomType.type + " - " + "KES " + roomType.price}</strong></h5>
+                      }
                       {/* <p>Click submit to book the room</p> */}
                     </div>
                   </div>

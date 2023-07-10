@@ -18,7 +18,11 @@ import slideOne from '../../assets/images/sample/slide1.jpeg'
 import slideTwo from '../../assets/images/sample/slide2.jpeg'
 import conference from '../../assets/images/sample/conference.jpeg'
 import drinks from '../../assets/images/sample/drinks.jpeg'
+import menu from '../../assets/menu/dhejomel_kitchen_menu.pdf'
 import BookConference from '../../components/confModal';
+import VIP from '../../assets/images/rooms/VIP Room.jpeg'
+import Executive from '../../assets/images/rooms/executive.jpeg'
+import Superior from '../../assets/images/rooms/VIP.jpeg'
 
 const Index = () => {
   const [value, setValue] = React.useState(dayjs());
@@ -216,6 +220,7 @@ const Index = () => {
                     <div class="single-select-box pt-45 mb-30">
                       <Button
                         variant="contained"
+                        style={{ backgroundColor: "rgb(128, 0, 0)" }}
                         className='p-3' onClick={() => setBookingShow(true)}>Book Room
                       </Button>
                     </div>
@@ -277,42 +282,59 @@ const Index = () => {
 
               <div class="col-xl-4 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
+                <div
+                  class="single-room mb-50"
+                // onClick={() => setToggler(!toggler)}
+                >
                   <div class="room-img">
-                    <img src="assets/img/rooms/room2.jpg" alt="" />
+                    <img src={Superior} alt="" />
                   </div>
                   <div class="room-caption">
                     <h3>Superior Room</h3>
-                    <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
+                    <div class="per-night d-flex flex-column">
+                      <span>Ksh.8,500  <span>/ Bed and Breakfast</span> </span>
+                      <span>Ksh. 9,500 <span>Half board</span></span>
+                      <span>Ksh. 10,000 <span>Full Board</span></span>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-4 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
+                <div
+                  class="single-room mb-50"
+                // onClick={() => setToggler(!toggler)}
+                >
                   <div class="room-img">
-                    <img src="assets/img/rooms/room3.jpg" alt="" />
+                    <img src={VIP} alt="" />
                   </div>
                   <div class="room-caption">
                     <h3>VIP Room</h3>
-                    <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
+                    <div class="per-night d-flex flex-column">
+                      <span>Ksh.8,500  <span>/ Bed and Breakfast</span> </span>
+                      <span>Ksh. 9,500 <span>Half board</span></span>
+                      <span>Ksh. 10,000 <span>Full Board</span></span>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-4 col-lg-6 col-md-6">
 
-                <div class="single-room mb-50" onClick={() => setToggler(!toggler)}>
+                <div
+                  class="single-room mb-50"
+                // onClick={() => setToggler(!toggler)}
+                >
                   <div class="room-img">
-                    <img src="assets/img/rooms/room4.jpg" alt="" />
+                    <img src={Executive} alt="" />
                   </div>
                   <div class="room-caption">
                     <h3>Executive Room</h3>
                     <div class="per-night">
-                      <span><u>$</u>150 <span>/ par night</span></span>
+                      <div class="per-night d-flex flex-column">
+                        <span>Ksh.5,500  <span>/ Bed and Breakfast</span> </span>
+                        <span>Ksh. 6,500 <span>Half board</span></span>
+                        <span>Ksh. 7,000 <span>Full Board</span></span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -356,7 +378,7 @@ const Index = () => {
           </div>
           <div className="statement p-5  d-flex align-items-center w-50">
             <div class="dining-caption">
-              <span>Our resturent</span>
+              <span>Our restaurant</span>
               <h3>Dining & Drinks</h3>
               <p>For a delicious culinary experience,
                 dine at the Dhe Jomels Restaurant.
@@ -375,8 +397,11 @@ const Index = () => {
                 sizzling Nyama Choma
                 a must-taste.
               </p>
-              <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
-                <strong>Learn More <i class="ti-angle-right"></i></strong>
+              <a href={menu}
+                class="btn py-2"
+                style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}
+              >
+                <strong>View Menu <i class="ti-angle-right"></i></strong>
               </a>
             </div>
           </div>
@@ -407,7 +432,7 @@ const Index = () => {
                 workshops or retreats.
               </p>
               <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
-                <strong>Learn More <i class="ti-angle-right"></i></strong>
+                <strong>Book Facility <i class="ti-angle-right"></i></strong>
               </a>
             </div>
           </div>

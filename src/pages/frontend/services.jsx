@@ -8,6 +8,7 @@ import axios from 'axios'
 import { Rating } from '@mui/material'
 import { Carousel } from 'react-bootstrap'
 import AddReview from '../../components/addReview'
+import menu from '../../assets/menu/dhejomel_kitchen_menu.pdf'
 
 const Services = () => {
   const [conferenceBookingShow, setConferenceShow] = React.useState(false);
@@ -101,8 +102,8 @@ const Services = () => {
                 sizzling Nyama Choma
                 a must-taste.
               </p>
-              <a href="#" class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
-                <strong>Learn More <i class="ti-angle-right"></i></strong>
+              <a href={menu} class="btn py-2" style={{ backgroundColor: "rgb(128, 0, 0)", color: "white" }}>
+                <strong>View Menu <i class="ti-angle-right"></i></strong>
               </a>
             </div>
           </div>

@@ -18,19 +18,20 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { format, parse } from 'date-fns';
 import Swal from 'sweetalert2';
-
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 const BookConference = (props) => {
   const [fullName, setFullName] = React.useState('');
   const [phoneNumber, setPhoneNumber] = React.useState('');
   const [email, setEmail] = React.useState('');
-  const [checkInDate, setCheckInDate] = React.useState('');
-  const [checkoutDate, setCheckOutDate] = React.useState('');
+  const [checkInDate, setCheckInDate] = React.useState(dayjs(Date.now()));
+  const [checkoutDate, setCheckOutDate] = React.useState(dayjs(Date.now()));
+  const [loading, setLoading] = React.useState(false);
 
 
 
   const bookRoom = () => {
-    Swal.fire('Booking...!', '', 'info')
-
+    setLoading(true)
     const dateObjectOne = parse(checkInDate, "EEE, dd MMM yyyy HH:mm:ss 'GMT'", new Date());
     const formattedDateOne = format(dateObjectOne, "yyyy-MM-dd'T'HH:mm:ss.SSSxxx");
 
@@ -48,11 +49,14 @@ const BookConference = (props) => {
     axios
       .post("https://api-dhejomel.azgard.co.ke/api/Conference/AddBooking", payload)
       .then((response) => {
+        setLoading(false)
         Swal.fire('Conference Room Booked!', '', 'success')
         props.fetchConference()
         props.onHide()
       })
       .catch((e) => {
+        setLoading(false)
+
         // Swal.fire({
         //   icon: 'error',
         //   title: 'Oops...',
@@ -144,7 +148,7 @@ const BookConference = (props) => {
                 name="radio-buttons-group"
                 className='d-flex'
               >
-                <FormControlLabel value="Mpesa" control={<Radio />} label="MPesa" />
+                {/* <FormControlLabel value="Mpesa" control={<Radio />} label="MPesa" /> */}
                 <FormControlLabel value="Cash" control={<Radio />} label="Cash" />
                 <FormControlLabel value="Reserve" control={<Radio />} label="Invoice" />
               </RadioGroup>
@@ -152,7 +156,27 @@ const BookConference = (props) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="contained" onClick={bookRoom}>Book  Room</Button>
+          {
+            loading ?
+              <LoadingButton
+                color="secondary"
+                loading={loading}
+                loadingPosition="start"
+                startIcon={<SaveIcon />}
+                variant="contained"
+                disabled
+              >
+                <span>Processing..</span>
+              </LoadingButton>
+              :
+              <Button
+                variant="contained"
+                onClick={bookRoom}
+              >Book  Room
+              </Button>
+
+          }
+
         </Modal.Footer>
       </Modal>
     </div>
